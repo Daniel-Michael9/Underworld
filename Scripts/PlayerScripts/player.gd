@@ -5,3 +5,4 @@ var movement: Vector2
 
 func _process(delta: float) -> void:
 	velocity += get_gravity() * delta
+  # is this nigga serious?????????
