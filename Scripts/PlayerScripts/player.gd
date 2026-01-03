@@ -10,7 +10,7 @@ var active_jump_buffer = false
 var  move_direction = 0
 @onready var jump_buffer_timer: Timer = $jumpBufferTimer
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if velocity.y > 0:
 		gravity = fall_gravity
 	else:
