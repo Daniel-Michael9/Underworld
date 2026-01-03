@@ -8,7 +8,9 @@ var jumpforce = 1000.0
 var max_fall_speed = 1000
 var active_jump_buffer = false
 var  move_direction = 0
-@onready var jump_buffer_timer: Timer = $jumpBufferTimer
+@onready var jump_buffer_timer: Timer = $jump_buffer_timer
+
+
 
 func _process(_delta: float) -> void:
 	if velocity.y > 0:
@@ -16,6 +18,7 @@ func _process(_delta: float) -> void:
 	else:
 		
 		gravity = normal_gravity
+	
 
 
 
