@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Underworld"
-run/main_scene="uid://dr24p41ar5o07"
+run/main_scene="uid://duh5l5q51t631"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
