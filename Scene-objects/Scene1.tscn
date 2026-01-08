@@ -16,9 +16,13 @@ position = Vector2(957, 419)
 scale = Vector2(4, 1)
 
 [node name="building_block3" parent="." index="3"]
-position = Vector2(1805.0001, 108)
+position = Vector2(1805.0001, 118)
 scale = Vector2(6, 1)
 
-[node name="building_block4" parent="." index="4" instance=ExtResource("2_avy3n")]
+[node name="building_block5" parent="." index="4" instance=ExtResource("2_avy3n")]
+position = Vector2(95, 118)
+scale = Vector2(6, 1)
+
+[node name="building_block4" parent="." index="5" instance=ExtResource("2_avy3n")]
 position = Vector2(2822, -157)
 scale = Vector2(6, 1)
