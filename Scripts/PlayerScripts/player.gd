@@ -8,6 +8,7 @@ var jumpforce = 1000.0
 var max_fall_speed = 1000
 var active_jump_buffer = false
 var  move_direction = 0
+var is_facing_right = 1
 @onready var jump_buffer_timer: Timer = $jump_buffer_timer
 @onready var ledge_grab_ray_cast_top: RayCast2D = $ledge_grab_ray_cast_top
 @onready var ledge_grab_ray_cast_bottom: RayCast2D = $ledge_grab_ray_cast_bottom
@@ -20,7 +21,6 @@ var bonus_x_speed = 0
 #this will be used for lowering the bonus_x_speed
 var friction = 20
 
-
 #stuff for the ledge grab
 var vertical_legde_grab_velocity = 320.0
 var horizontal_ledge_grab_velocity = 120
@@ -32,12 +32,17 @@ func _process(_delta: float) -> void:
 	else:
 		
 		gravity = normal_gravity
-	if ledge_grab_ray_cast_bottom.is_colliding() and !ledge_grab_ray_cast_top.is_colliding():
+	if (ledge_grab_ray_cast_bottom.is_colliding() and !ledge_grab_ray_cast_top.is_colliding() and is_facing_right == 1) or (ledge_grab_ray_cast_bottom_left.is_colliding() and !ledge_grab_ray_cast_top_left.is_colliding() and is_facing_right == -1):
 		ledge_climb()
+		
+	if move_direction == 1:
+		is_facing_right = 1
+	
+	if move_direction == -1:
+		is_facing_right = -1
 	
 	
-
-
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -70,7 +75,7 @@ func _on_jump_buffer_timer_timeout() -> void:
 
 func ledge_climb():
 	if can_ledge_grab:
-		bonus_x_speed += horizontal_ledge_grab_velocity
+		bonus_x_speed += horizontal_ledge_grab_velocity * sign(is_facing_right)
 		velocity.y -= vertical_legde_grab_velocity
 		can_ledge_grab = false
 		ledge_climb_timer.start()
