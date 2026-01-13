@@ -17,6 +17,11 @@ var can_cut_jump = true
 @onready var ledge_grab_ray_cast_top_left: RayCast2D = $ledge_grab_ray_cast_top_left
 @onready var ledge_grab_ray_cast_bottom_left: RayCast2D = $ledge_grab_ray_cast_bottom_left
 
+#stuff for the duble jump
+var duble_jump_force = 1000.0
+var can_duble_jump = true
+var has_unlocked_duble_jump = true
+
 #used for stuff like knockback and stuff like that
 var bonus_x_speed = 0
 #this will be used for lowering the bonus_x_speed
@@ -48,9 +53,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if !is_on_floor() and Input.is_action_just_pressed("jump") and can_duble_jump:
+		duble_jump()
+	
 	if is_on_floor():
 		can_cut_jump = true
-	
+		can_duble_jump = true
+		
 	# Apply gravity
 	if not is_on_floor():
 		if Input.is_action_just_pressed("jump"):
@@ -90,3 +99,9 @@ func ledge_climb():
 
 func _on_ledge_climb_timer_timeout() -> void:
 	can_ledge_grab = true
+
+func duble_jump():
+	if has_unlocked_duble_jump:
+		velocity.y = -duble_jump_force
+		can_cut_jump = true
+		can_duble_jump = false
