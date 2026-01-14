@@ -1,4 +1,10 @@
 extends CharacterBody2D
+# Process functiion at 35, gravity 40 , calling ledge climb at 41
+# Physics process function 55 contains input functions
+# Jump buffer timer 89
+# Ledge climb 96
+# On ledge climb timer timeout 105
+# Double jump 109
 
 var movespeed = 600.0
 var normal_gravity = 2000.0
