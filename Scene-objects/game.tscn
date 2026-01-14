@@ -5,7 +5,7 @@
 
 [node name="game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_q18lp")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_q18lp")]
 position = Vector2(252, 98)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
