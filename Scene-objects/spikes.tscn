@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://i7w6dru2lskv"]
+
+[ext_resource type="Texture2D" uid="uid://cmh7dahg8u8dy" path="res://art_assets/spikes.png" id="1_e8ku1"]
+[ext_resource type="PackedScene" uid="uid://crub1d1bfwwsx" path="res://Scene-objects/dmg_area_spikes.tscn" id="2_ypmrm"]
+[ext_resource type="Script" uid="uid://jh1s3mdgrldn" path="res://Scripts/dmg_area_spikes.gd" id="3_8r5w4"]
+
+[node name="spikes" type="Sprite2D"]
+texture = ExtResource("1_e8ku1")
+
+[node name="dmg_area_spikes" parent="." instance=ExtResource("2_ypmrm")]
+script = ExtResource("3_8r5w4")
+
+[connection signal="area_entered" from="dmg_area_spikes" to="dmg_area_spikes" method="_on_area_entered"]
+[connection signal="body_entered" from="dmg_area_spikes" to="dmg_area_spikes" method="_on_body_entered"]

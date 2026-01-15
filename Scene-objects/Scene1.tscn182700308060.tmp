@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://duh5l5q51t631"]
+
+[ext_resource type="PackedScene" uid="uid://dr24p41ar5o07" path="res://Scene-objects/game.tscn" id="1_h0ye1"]
+[ext_resource type="PackedScene" uid="uid://fixw1ulmthwn" path="res://Scene-objects/building_block.tscn" id="2_avy3n"]
+[ext_resource type="PackedScene" uid="uid://i7w6dru2lskv" path="res://Scene-objects/spikes.tscn" id="3_dghe2"]
+
+[node name="game" instance=ExtResource("1_h0ye1")]
+
+[node name="Player" parent="." index="0"]
+position = Vector2(1581, -35)
+
+[node name="building_block" parent="." index="1"]
+scale = Vector2(70, 0.991)
+
+[node name="building_block2" parent="." index="2"]
+position = Vector2(957, 419)
+scale = Vector2(4, 1)
+
+[node name="building_block3" parent="." index="3"]
+position = Vector2(1805.0001, 118)
+scale = Vector2(6, 1)
+
+[node name="building_block5" parent="." index="4" instance=ExtResource("2_avy3n")]
+position = Vector2(95, 118)
+scale = Vector2(6, 1)
+
+[node name="building_block4" parent="." index="5" instance=ExtResource("2_avy3n")]
+position = Vector2(2822, -157)
+scale = Vector2(6, 1)
+
+[node name="spikes" parent="." index="6" instance=ExtResource("3_dghe2")]
+position = Vector2(1032, 339)
+scale = Vector2(5.4473686, 5.375)
