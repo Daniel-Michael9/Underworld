@@ -5,6 +5,7 @@ extends CharacterBody2D
 # Ledge climb 96
 # On ledge climb timer timeout 105
 # Double jump 109
+@onready var sprite = $Sprite2D
 var acceleration = 1100
 var movespeed = 40000.0
 var normal_gravity = 2000.0
@@ -106,8 +107,13 @@ func _physics_process(delta: float) -> void:
 		print("You should be moving now")
 		velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta )
 	else:
-		velocity.x = move_toward(velocity.x ,0 , friction* 3.1 * delta)
+		velocity.x = move_toward(velocity.x ,0 , friction* 4 * delta)
 	move_and_slide()
+	if move_direction < 0:
+		sprite.flip_h = true
+	elif move_direction > 0:
+		sprite.flip_h = false
+	
 
 
 func _on_jump_buffer_timer_timeout() -> void:

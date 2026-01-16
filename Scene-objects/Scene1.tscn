@@ -85,7 +85,7 @@ sources/0 = SubResource("TileSetAtlasSource_n7tin")
 position = Vector2(1581, -35)
 
 [node name="Camera2D" parent="Player" index="8"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 
 [node name="building_block" parent="." index="1"]
 scale = Vector2(70, 0.991)
