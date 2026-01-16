@@ -5,8 +5,8 @@ extends CharacterBody2D
 # Ledge climb 96
 # On ledge climb timer timeout 105
 # Double jump 109
-
-var movespeed = 600.0
+var acceleration = 1100
+var movespeed = 40000.0
 var normal_gravity = 2000.0
 var fall_gravity = 2500
 var gravity = normal_gravity
@@ -31,7 +31,7 @@ var has_unlocked_duble_jump = true
 #used for stuff like knockback and stuff like that
 var bonus_x_speed = 0
 #this will be used for lowering the bonus_x_speed
-var friction = 20
+var friction = 600
 
 #stuff for the ledge grab
 var vertical_legde_grab_velocity = 500
@@ -84,7 +84,12 @@ func _physics_process(delta: float) -> void:
 			can_cut_jump = false
 	
 	move_direction = Input.get_axis("move_left", "move_right")
-	velocity.x = (move_direction * movespeed) + bonus_x_speed
+	#velocity.x = (move_direction * movespeed * delta) + bonus_x_speed
+	if move_direction != 0:
+		print("You should be moving now")
+		velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta )
+	else:
+		velocity.x = move_toward(velocity.x ,0 , friction* 3.1 * delta)
 	move_and_slide()
 
 
