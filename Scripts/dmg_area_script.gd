@@ -4,6 +4,8 @@ extends Area2D
 @export var x_knockback = 500
 @export var y_knockback = 200
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass

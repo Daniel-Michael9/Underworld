@@ -22,6 +22,8 @@ var can_cut_jump = true
 @onready var ledge_climb_timer: Timer = $ledge_climb_timer
 @onready var ledge_grab_ray_cast_top_left: RayCast2D = $ledge_grab_ray_cast_top_left
 @onready var ledge_grab_ray_cast_bottom_left: RayCast2D = $ledge_grab_ray_cast_bottom_left
+@onready var animation_refrence: AnimatedSprite2D = $Sprite2D
+@onready var main_node: CharacterBody2D = $"."
 
 #stuff for the duble jump
 var duble_jump_force = 1000.0
@@ -49,10 +51,25 @@ func _process(_delta: float) -> void:
 		
 	if move_direction == 1:
 		is_facing_right = 1
+		
 	
 	if move_direction == -1:
 		is_facing_right = -1
 	
+	
+	
+	#ANIMATIONS 
+	
+	if is_on_floor():
+		if move_direction == 0: 
+			animation_refrence.play("idle")
+		else:
+			animation_refrence.play("run")
+	else:
+		if velocity.y < 0:
+			animation_refrence.play("jump_up")
+		else:
+			animation_refrence.play("jump_down")
 	
 	
 

@@ -84,6 +84,9 @@ sources/0 = SubResource("TileSetAtlasSource_n7tin")
 [node name="Player" parent="." index="0"]
 position = Vector2(1581, -35)
 
+[node name="Camera2D" parent="Player" index="8"]
+zoom = Vector2(1.5, 1.5)
+
 [node name="building_block" parent="." index="1"]
 scale = Vector2(70, 0.991)
 
@@ -121,7 +124,6 @@ scale = Vector2(7.6286187, 7.1127906)
 
 [node name="dmg_area_spikes" parent="spikes2" index="1"]
 x_knockback = 2000
-y_knockback = -10
 
 [editable path="spikes"]
 [editable path="spikes2"]
