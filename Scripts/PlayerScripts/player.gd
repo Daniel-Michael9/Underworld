@@ -17,17 +17,26 @@ var active_jump_buffer = false
 var  move_direction = 0
 var is_facing_right = 1
 var can_cut_jump = true
+
 @onready var jump_buffer_timer: Timer = $jump_buffer_timer
 @onready var ledge_grab_ray_cast_top: RayCast2D = $ledge_grab_ray_cast_top
 @onready var ledge_grab_ray_cast_bottom: RayCast2D = $ledge_grab_ray_cast_bottom
 @onready var ledge_climb_timer: Timer = $ledge_climb_timer
 @onready var ledge_grab_ray_cast_top_left: RayCast2D = $ledge_grab_ray_cast_top_left
 @onready var ledge_grab_ray_cast_bottom_left: RayCast2D = $ledge_grab_ray_cast_bottom_left
-@onready var animation_refrence: AnimatedSprite2D = $Sprite2D
+@onready var animation_refrence: AnimatedSprite2D = $main_animations
 @onready var main_node: CharacterBody2D = $"."
+@onready var attack_fx: AnimatedSprite2D = $attack_fx
+@onready var combo_timer: Timer = $combo_timer
+
+
+#attack stuff 
+var is_attacking = false
+var attack_combo = 1
+
 
 #stuff for the duble jump
-var duble_jump_force = 1000.0
+var duble_jump_force = 750.0
 var can_duble_jump = true
 var has_unlocked_duble_jump = true
 
@@ -60,21 +69,24 @@ func _process(_delta: float) -> void:
 	
 	
 	#ANIMATIONS 
-	
-	if is_on_floor():
-		if move_direction == 0: 
-			animation_refrence.play("idle")
+	if is_attacking == false:
+		if is_on_floor():
+			if move_direction == 0: 
+				animation_refrence.play("idle")
+			else:
+				animation_refrence.play("run")
 		else:
-			animation_refrence.play("run")
-	else:
-		if velocity.y < 0:
-			if animation_refrence.animation != "jump_up":
-				animation_refrence.play("jump_up")
-		else: if animation_refrence.animation != "jump_down":
-			animation_refrence.play("jump_down")
+			if velocity.y < 0:
+				if animation_refrence.animation != "jump_up":
+					animation_refrence.play("jump_up")
+			elif !animation_refrence.animation != "jump_down":
+				animation_refrence.play("jump_down")
 	
-	
-
+	if Input.is_action_just_pressed("attack"):
+		if attack_combo == 1:
+			attack1()
+		else:
+			attack2()
 
 func _physics_process(delta: float) -> void:
 	
@@ -109,9 +121,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x ,0 , friction* 4 * delta)
 	move_and_slide()
 	if move_direction < 0:
-		sprite.flip_h = true
+		animation_refrence.flip_h = true
+		attack_fx.flip_h = true
 	elif move_direction > 0:
-		sprite.flip_h = false
+		animation_refrence.flip_h = false
+		attack_fx.flip_h = false
 	
 
 
@@ -138,3 +152,26 @@ func duble_jump():
 		velocity.y = -duble_jump_force
 		can_cut_jump = true
 		can_duble_jump = false
+		
+
+func attack1():
+	animation_refrence.play("attack1")
+	attack_fx.play("attack1")
+	is_attacking = true
+	attack_combo = 2
+	combo_timer.start()
+
+
+func attack2():
+	animation_refrence.play("attack2")
+	attack_fx.play("attack2")
+	is_attacking = true
+	attack_combo = 1
+
+func _on_main_animations_animation_finished() -> void:
+	if animation_refrence.animation == "attack1" or animation_refrence.animation == "attack2":
+		is_attacking = false
+
+
+func _on_combo_timer_timeout() -> void:
+	attack_combo = 1
