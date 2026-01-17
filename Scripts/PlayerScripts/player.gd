@@ -28,6 +28,9 @@ var can_cut_jump = true
 @onready var main_node: CharacterBody2D = $"."
 @onready var attack_fx: AnimatedSprite2D = $attack_fx
 @onready var combo_timer: Timer = $combo_timer
+@onready var attack_1_hit_box: Area2D = $attack1_hit_box
+@onready var attack_2_hit_box: Area2D = $attack2_hit_box
+
 
 
 #attack stuff 
@@ -159,6 +162,7 @@ func attack1():
 	attack_fx.play("attack1")
 	is_attacking = true
 	attack_combo = 2
+	attack_1_hit_box.process_mode = Node.PROCESS_MODE_INHERIT
 	combo_timer.start()
 
 
@@ -167,10 +171,13 @@ func attack2():
 	attack_fx.play("attack2")
 	is_attacking = true
 	attack_combo = 1
+	attack_2_hit_box.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_main_animations_animation_finished() -> void:
 	if animation_refrence.animation == "attack1" or animation_refrence.animation == "attack2":
 		is_attacking = false
+		attack_1_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
+		attack_2_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_combo_timer_timeout() -> void:

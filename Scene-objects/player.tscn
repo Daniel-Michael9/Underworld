@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://j12p3kfw5vre"]
+[gd_scene load_steps=76 format=3 uid="uid://j12p3kfw5vre"]
 
 [ext_resource type="Script" uid="uid://b16h1yu8thta1" path="res://Scripts/PlayerScripts/player.gd" id="1_og8ir"]
 [ext_resource type="Texture2D" uid="uid://c50v4tbchlld3" path="res://art_assets/charecter/CHARACTER_attack_1-Sheet.png" id="2_hfu64"]
@@ -335,10 +335,6 @@ region = Rect2(0, 0, 76, 51)
 atlas = ExtResource("6_lvyh1")
 region = Rect2(91, 0, 76, 51)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iou0g"]
-atlas = ExtResource("6_lvyh1")
-region = Rect2(182, 0, 76, 51)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sv4o"]
 atlas = ExtResource("6_lvyh1")
 region = Rect2(273, 0, 76, 51)
@@ -350,6 +346,10 @@ region = Rect2(364, 0, 76, 51)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0bfvg"]
 atlas = ExtResource("6_lvyh1")
 region = Rect2(455, 0, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iou0g"]
+atlas = ExtResource("6_lvyh1")
+region = Rect2(182, 0, 76, 51)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_no8y6"]
 atlas = ExtResource("6_lvyh1")
@@ -433,9 +433,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_dgb8n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iou0g")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_5sv4o")
 }, {
 "duration": 1.0,
@@ -443,6 +440,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0bfvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iou0g")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_no8y6")
@@ -514,6 +514,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gdpa"]
 size = Vector2(13, 35)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfu64"]
+radius = 23.520958
+height = 57.2659
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_og8ir")
@@ -526,6 +530,7 @@ autoplay = "idle"
 [node name="attack_fx" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pv62l")
 animation = &"attack2"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1.5)
@@ -561,6 +566,24 @@ one_shot = true
 [node name="combo_timer" type="Timer" parent="."]
 wait_time = 2.0109999999999997
 one_shot = true
+
+[node name="attack1_hit_box" type="Area2D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="shape" type="CollisionShape2D" parent="attack1_hit_box"]
+position = Vector2(-1, 8)
+rotation = -4.712389
+shape = SubResource("CapsuleShape2D_hfu64")
+
+[node name="attack2_hit_box" type="Area2D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="shape" type="CollisionShape2D" parent="attack2_hit_box"]
+position = Vector2(-5, 4)
+rotation = -3.6145768
+shape = SubResource("CapsuleShape2D_hfu64")
 
 [connection signal="animation_finished" from="main_animations" to="." method="_on_main_animations_animation_finished"]
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
