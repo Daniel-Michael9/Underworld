@@ -7,11 +7,11 @@ extends CharacterBody2D
 # Double jump 109
 @onready var sprite = $Sprite2D
 var acceleration = 1100
-var movespeed = 40000.0
+var movespeed = 29000.0
 var normal_gravity = 2000.0
 var fall_gravity = 2500
 var gravity = normal_gravity
-var jumpforce = 1000.0
+var jumpforce = 750.0
 var max_fall_speed = 1000
 var active_jump_buffer = false
 var  move_direction = 0
@@ -68,8 +68,9 @@ func _process(_delta: float) -> void:
 			animation_refrence.play("run")
 	else:
 		if velocity.y < 0:
-			animation_refrence.play("jump_up")
-		else:
+			if animation_refrence.animation != "jump_up":
+				animation_refrence.play("jump_up")
+		else: if animation_refrence.animation != "jump_down":
 			animation_refrence.play("jump_down")
 	
 	
@@ -102,10 +103,8 @@ func _physics_process(delta: float) -> void:
 			can_cut_jump = false
 	
 	move_direction = Input.get_axis("move_left", "move_right")
-	#velocity.x = (move_direction * movespeed * delta) + bonus_x_speed
 	if move_direction != 0:
-		print("You should be moving now")
-		velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta )
+		velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta)
 	else:
 		velocity.x = move_toward(velocity.x ,0 , friction* 4 * delta)
 	move_and_slide()

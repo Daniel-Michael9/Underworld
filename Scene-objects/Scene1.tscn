@@ -110,9 +110,6 @@ scale = Vector2(6, 1)
 position = Vector2(983, 339)
 scale = Vector2(6.7199802, 5.4400005)
 
-[node name="dmg_area_spikes" parent="spikes" index="1"]
-y_knockback = 1000
-
 [node name="TileMap" type="TileMap" parent="." index="7"]
 tile_set = SubResource("TileSet_o5pyo")
 format = 2
@@ -123,7 +120,7 @@ position = Vector2(782.00006, 333.00003)
 scale = Vector2(7.6286187, 7.1127906)
 
 [node name="dmg_area_spikes" parent="spikes2" index="1"]
-x_knockback = 2000
+x_knockback = 200
 
 [editable path="spikes"]
 [editable path="spikes2"]
