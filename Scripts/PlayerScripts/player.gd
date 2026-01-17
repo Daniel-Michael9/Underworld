@@ -6,7 +6,7 @@ extends CharacterBody2D
 # On ledge climb timer timeout 105
 # Double jump 109
 @onready var sprite = $Sprite2D
-var acceleration = 1100
+var acceleration = 2000
 var movespeed = 29000.0
 var normal_gravity = 2000.0
 var fall_gravity = 2500
