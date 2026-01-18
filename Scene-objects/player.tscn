@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://j12p3kfw5vre"]
+[gd_scene load_steps=80 format=3 uid="uid://j12p3kfw5vre"]
 
 [ext_resource type="Script" uid="uid://b16h1yu8thta1" path="res://Scripts/PlayerScripts/player.gd" id="1_og8ir"]
 [ext_resource type="Texture2D" uid="uid://c50v4tbchlld3" path="res://art_assets/charecter/CHARACTER_attack_1-Sheet.png" id="2_hfu64"]
@@ -518,22 +518,109 @@ size = Vector2(13, 35)
 radius = 23.520958
 height = 57.2659
 
+[sub_resource type="Animation" id="Animation_hfu64"]
+resource_name = "Attack1"
+length = 0.75000834
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_animations:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_animations:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_lvyh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_animations:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_animations:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7de65"]
+resource_name = "Attack2"
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_animations:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack2"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_animations:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667, 0.75, 0.8333334, 0.9166667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pv28"]
+_data = {
+&"Attack1": SubResource("Animation_hfu64"),
+&"Attack2": SubResource("Animation_7de65"),
+&"RESET": SubResource("Animation_lvyh1")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_og8ir")
 
 [node name="main_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8s4hw")
-animation = &"attack2"
+animation = &"attack1"
 autoplay = "idle"
-frame = 13
-frame_progress = 1.0
 
 [node name="attack_fx" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pv62l")
-animation = &"attack1"
-frame = 10
-frame_progress = 1.0
+animation = &"attack2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1.5)
@@ -567,7 +654,7 @@ collision_mask = 2
 one_shot = true
 
 [node name="combo_timer" type="Timer" parent="."]
-wait_time = 2.0109999999999997
+wait_time = 0.2
 one_shot = true
 
 [node name="attack1_hit_box" type="Area2D" parent="."]
@@ -588,7 +675,13 @@ position = Vector2(-5, 4)
 rotation = -3.6145768
 shape = SubResource("CapsuleShape2D_hfu64")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6pv28")
+}
+
 [connection signal="animation_finished" from="main_animations" to="." method="_on_main_animations_animation_finished"]
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="ledge_climb_timer" to="." method="_on_ledge_climb_timer_timeout"]
 [connection signal="timeout" from="combo_timer" to="." method="_on_combo_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

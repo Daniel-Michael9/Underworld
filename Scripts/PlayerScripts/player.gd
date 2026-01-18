@@ -31,6 +31,7 @@ var can_cut_jump = true
 @onready var ledge_grab_ray_cast_top_left: RayCast2D = $ledge_grab_ray_cast_top_left
 @onready var ledge_grab_ray_cast_bottom_left: RayCast2D = $ledge_grab_ray_cast_bottom_left
 @onready var animation_refrence: AnimatedSprite2D = $main_animations
+@onready var animation_refrence2: AnimationPlayer = $AnimationPlayer
 @onready var main_node: CharacterBody2D = $"."
 @onready var attack_fx: AnimatedSprite2D = $attack_fx
 @onready var combo_timer: Timer = $combo_timer
@@ -164,20 +165,22 @@ func duble_jump():
 		
 
 func attack1():
-	animation_refrence.play("attack1")
+	animation_refrence2.play("Attack1")
 	attack_fx.play("attack1")
 	is_attacking = true
 	attack_combo = 2
 	attack_1_hit_box.process_mode = Node.PROCESS_MODE_INHERIT
 	combo_timer.start()
+	
 
 
 func attack2():
-	animation_refrence.play("attack2")
+	animation_refrence2.play("Attack2")
 	attack_fx.play("attack2")
 	is_attacking = true
 	attack_combo = 1
 	attack_2_hit_box.process_mode = Node.PROCESS_MODE_INHERIT
+	
 
 func _on_main_animations_animation_finished() -> void:
 	if animation_refrence.animation == "attack1" or animation_refrence.animation == "attack2":
@@ -188,3 +191,10 @@ func _on_main_animations_animation_finished() -> void:
 
 func _on_combo_timer_timeout() -> void:
 	attack_combo = 1
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	if animation_refrence2.current_animation == "Attack1" or animation_refrence2.current_animation == "Attack2":
+		is_attacking = false
+		attack_1_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
+		attack_2_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
