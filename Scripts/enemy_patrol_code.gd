@@ -37,3 +37,4 @@ func _physics_process(delta: float) -> void:
 
 func flip(direction):
 	move_direction = direction
+	#this flips
