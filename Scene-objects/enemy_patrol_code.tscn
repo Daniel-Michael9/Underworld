@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bclmkd818y1qj"]
+
+[ext_resource type="Script" uid="uid://u7hhf71uie7t" path="res://Scripts/enemy_patrol_code.gd" id="1_f1uvc"]
+
+[node name="enemy_patrol_code" type="Node2D"]
+script = ExtResource("1_f1uvc")

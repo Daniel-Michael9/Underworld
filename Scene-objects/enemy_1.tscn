@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq4c0h7kb3n0w"]
+
+[ext_resource type="Texture2D" uid="uid://b5y88lvj247kn" path="res://art_assets/enemy1.png" id="1_5dvbc"]
+[ext_resource type="Script" uid="uid://bq7g5li6q68fw" path="res://Scripts/enemy_1.gd" id="1_6s1x3"]
+[ext_resource type="PackedScene" uid="uid://bclmkd818y1qj" path="res://Scene-objects/enemy_patrol_code.tscn" id="3_ba826"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s1x3"]
+size = Vector2(9, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba826"]
+atlas = ExtResource("1_5dvbc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_628kr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba826")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy1" type="CharacterBody2D"]
+script = ExtResource("1_6s1x3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_6s1x3")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_628kr")
+
+[node name="enemy_patrol_node" parent="." node_paths=PackedStringArray("left_ray", "right_ray", "down_left_ray", "down_right_ray", "enemy_refrence") instance=ExtResource("3_ba826")]
+left_ray = NodePath("../RayCast_left")
+right_ray = NodePath("../RayCast_right")
+down_left_ray = NodePath("../RayCast_left_down")
+down_right_ray = NodePath("../RayCast_right_down")
+enemy_refrence = NodePath("..")
+
+[node name="RayCast_right" type="RayCast2D" parent="."]
+position = Vector2(4, 0)
+target_position = Vector2(5, 0)
+collision_mask = 2
+
+[node name="RayCast_left" type="RayCast2D" parent="."]
+position = Vector2(-5, 0)
+target_position = Vector2(-6, 0)
+collision_mask = 2
+
+[node name="RayCast_left_down" type="RayCast2D" parent="."]
+position = Vector2(-8, 0)
+target_position = Vector2(0, 6)
+collision_mask = 2
+
+[node name="RayCast_right_down" type="RayCast2D" parent="."]
+position = Vector2(6, 0)
+target_position = Vector2(0, 6)
+collision_mask = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://duh5l5q51t631"]
+[gd_scene load_steps=8 format=3 uid="uid://duh5l5q51t631"]
 
 [ext_resource type="PackedScene" uid="uid://dr24p41ar5o07" path="res://Scene-objects/game.tscn" id="1_h0ye1"]
 [ext_resource type="PackedScene" uid="uid://fixw1ulmthwn" path="res://Scene-objects/building_block.tscn" id="2_avy3n"]
+[ext_resource type="PackedScene" uid="uid://cq4c0h7kb3n0w" path="res://Scene-objects/enemy_1.tscn" id="2_n7tin"]
 [ext_resource type="PackedScene" uid="uid://i7w6dru2lskv" path="res://Scene-objects/spikes.tscn" id="3_dghe2"]
 [ext_resource type="Texture2D" uid="uid://c7rturlrknjk7" path="res://icon.svg" id="4_uiaq3"]
 
@@ -84,7 +85,7 @@ sources/0 = SubResource("TileSetAtlasSource_n7tin")
 [node name="Player" parent="." index="0"]
 position = Vector2(1581, -35)
 
-[node name="Camera2D" parent="Player" index="9"]
+[node name="Camera2D" parent="Player" index="12"]
 zoom = Vector2(2, 2)
 position_smoothing_speed = 15.0
 
@@ -122,6 +123,10 @@ scale = Vector2(7.6286187, 7.1127906)
 
 [node name="dmg_area_spikes" parent="spikes2" index="1"]
 x_knockback = 200
+
+[node name="enemy1" parent="." index="9" instance=ExtResource("2_n7tin")]
+position = Vector2(1484, 40.99997)
+scale = Vector2(4.44, 3.88)
 
 [editable path="spikes"]
 [editable path="spikes2"]
