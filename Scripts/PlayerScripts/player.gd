@@ -1,10 +1,16 @@
 extends CharacterBody2D
-# Process functiion at 35, gravity 40 , calling ledge climb at 41
-# Physics process function 55 contains input functions
-# Jump buffer timer 89
-# Ledge climb 96
-# On ledge climb timer timeout 105
-# Double jump 109
+# Process functiion at 62, gravity  , calling ledge climb , Animations
+# Physics process function 100 contains input functions and Applied gravity
+# Jump buffer timer 141
+# Ledge climb 147
+# On ledge climb timer timeout 159
+# Double jump 161
+# Attack1 166
+# Attack2 175
+# On Main animation finished 182
+# On combo timer timeout 189
+
+
 #@onready var sprite = $Sprite2D
 var acceleration = 2000
 var movespeed = 29000.0

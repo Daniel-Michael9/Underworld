@@ -526,11 +526,14 @@ script = ExtResource("1_og8ir")
 sprite_frames = SubResource("SpriteFrames_8s4hw")
 animation = &"attack2"
 autoplay = "idle"
+frame = 13
+frame_progress = 1.0
 
 [node name="attack_fx" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pv62l")
-animation = &"attack2"
-frame = 1
+animation = &"attack1"
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 1.5)
