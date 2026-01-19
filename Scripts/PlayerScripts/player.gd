@@ -197,5 +197,6 @@ func _on_combo_timer_timeout() -> void:
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	if animation_refrence2.current_animation == "Attack1" or animation_refrence2.current_animation == "Attack2":
 		is_attacking = false
+		animation_refrence2.stop(true)
 		attack_1_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
 		attack_2_hit_box.process_mode = Node.PROCESS_MODE_DISABLED

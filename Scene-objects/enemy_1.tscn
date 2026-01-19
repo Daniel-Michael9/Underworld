@@ -32,7 +32,8 @@ shape = SubResource("RectangleShape2D_6s1x3")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628kr")
 
-[node name="enemy_patrol_code" parent="." instance=ExtResource("3_ba826")]
+[node name="enemy_patrol_code" parent="." node_paths=PackedStringArray("enemy_refrence") instance=ExtResource("3_ba826")]
+enemy_refrence = NodePath("..")
 
 [node name="RayCast_left" parent="enemy_patrol_code" index="0"]
 position = Vector2(-5, 0)
