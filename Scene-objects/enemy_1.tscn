@@ -32,29 +32,22 @@ shape = SubResource("RectangleShape2D_6s1x3")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628kr")
 
-[node name="enemy_patrol_node" parent="." node_paths=PackedStringArray("left_ray", "right_ray", "down_left_ray", "down_right_ray", "enemy_refrence") instance=ExtResource("3_ba826")]
-left_ray = NodePath("../RayCast_left")
-right_ray = NodePath("../RayCast_right")
-down_left_ray = NodePath("../RayCast_left_down")
-down_right_ray = NodePath("../RayCast_right_down")
-enemy_refrence = NodePath("..")
+[node name="enemy_patrol_code" parent="." instance=ExtResource("3_ba826")]
 
-[node name="RayCast_right" type="RayCast2D" parent="."]
-position = Vector2(4, 0)
-target_position = Vector2(5, 0)
-collision_mask = 2
-
-[node name="RayCast_left" type="RayCast2D" parent="."]
+[node name="RayCast_left" parent="enemy_patrol_code" index="0"]
 position = Vector2(-5, 0)
-target_position = Vector2(-6, 0)
-collision_mask = 2
+target_position = Vector2(-7, 0)
 
-[node name="RayCast_left_down" type="RayCast2D" parent="."]
-position = Vector2(-8, 0)
-target_position = Vector2(0, 6)
-collision_mask = 2
+[node name="RayCast_right" parent="enemy_patrol_code" index="1"]
+position = Vector2(4, 0)
+target_position = Vector2(6, 0)
 
-[node name="RayCast_right_down" type="RayCast2D" parent="."]
-position = Vector2(6, 0)
-target_position = Vector2(0, 6)
-collision_mask = 2
+[node name="RayCast_right_down" parent="enemy_patrol_code" index="2"]
+position = Vector2(7, 0)
+target_position = Vector2(0, 8)
+
+[node name="RayCast_left_down" parent="enemy_patrol_code" index="3"]
+position = Vector2(-9, 0)
+target_position = Vector2(0, 8)
+
+[editable path="enemy_patrol_code"]
