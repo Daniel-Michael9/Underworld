@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://xqat36bavyap"]
+
+[ext_resource type="Script" uid="uid://btjsg438m1k52" path="res://Scripts/enemy_health_script.gd" id="1_cbctv"]
+
+[node name="enemy_health_script" type="Node2D" node_paths=PackedStringArray("dmg_stun_timer", "invonrability_timer")]
+script = ExtResource("1_cbctv")
+dmg_stun_timer = NodePath("dmg_stun_timer")
+invonrability_timer = NodePath("invonrability_timer")
+
+[node name="dmg_stun_timer" type="Timer" parent="."]
+wait_time = 0.327
+one_shot = true
+
+[node name="invonrability_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="dmg_stun_timer" to="." method="_on_dmg_stun_timer_timeout"]
+[connection signal="timeout" from="invonrability_timer" to="." method="_on_invonrability_timer_timeout"]
