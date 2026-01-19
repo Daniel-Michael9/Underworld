@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2an1qc4cc7ds"]
+
+[ext_resource type="Script" uid="uid://casjowj2h025a" path="res://enemy_phyisics_code.gd" id="1_b8lgg"]
+
+[node name="enemy_phyisics_code" type="Node2D"]
+script = ExtResource("1_b8lgg")

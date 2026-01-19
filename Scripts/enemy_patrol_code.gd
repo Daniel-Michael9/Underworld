@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if enemy_refrence.state == "patrol":
 		enemy_refrence.velocity.x = patrol_speed * dir
-		enemy_refrence.move_and_slide()
+	
 
 func flip(direction):
 	move_direction = direction
