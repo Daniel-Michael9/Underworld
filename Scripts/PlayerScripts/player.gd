@@ -80,6 +80,7 @@ func _process(_delta: float) -> void:
 	
 	#ANIMATIONS 
 	if is_attacking == false:
+		animation_refrence2.stop(true)
 		if is_on_floor():
 			if move_direction == 0: 
 				animation_refrence.play("idle")
