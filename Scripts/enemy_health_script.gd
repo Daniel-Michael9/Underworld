@@ -63,3 +63,4 @@ func _on_enemy_hurt_box_area_exited(area: Area2D) -> void:
 func die():
 	if health <= 0:
 		enemy_refrence.queue_free()
+		
