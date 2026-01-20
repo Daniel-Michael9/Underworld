@@ -195,6 +195,7 @@ func _on_combo_timer_timeout() -> void:
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	is_attacking = false
 	if animation_refrence2.current_animation == "Attack1" or animation_refrence2.current_animation == "Attack2":
 		is_attacking = false
 		animation_refrence2.stop(true)
