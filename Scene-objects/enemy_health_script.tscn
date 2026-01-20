@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://xqat36bavyap"]
+[gd_scene load_steps=3 format=3 uid="uid://xqat36bavyap"]
 
 [ext_resource type="Script" uid="uid://btjsg438m1k52" path="res://Scripts/enemy_health_script.gd" id="1_cbctv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbctv"]
+radius = 5.0
 
 [node name="enemy_health_script" type="Node2D" node_paths=PackedStringArray("dmg_stun_timer", "invonrability_timer")]
 script = ExtResource("1_cbctv")
@@ -8,11 +11,18 @@ dmg_stun_timer = NodePath("dmg_stun_timer")
 invonrability_timer = NodePath("invonrability_timer")
 
 [node name="dmg_stun_timer" type="Timer" parent="."]
-wait_time = 0.327
+wait_time = 0.427
 one_shot = true
 
 [node name="invonrability_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="enemy_hurt_box" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="enemy_hurt_box"]
+shape = SubResource("CircleShape2D_cbctv")
+
 [connection signal="timeout" from="dmg_stun_timer" to="." method="_on_dmg_stun_timer_timeout"]
 [connection signal="timeout" from="invonrability_timer" to="." method="_on_invonrability_timer_timeout"]
+[connection signal="area_entered" from="enemy_hurt_box" to="." method="_on_enemy_hurt_box_area_entered"]
+[connection signal="area_exited" from="enemy_hurt_box" to="." method="_on_enemy_hurt_box_area_exited"]

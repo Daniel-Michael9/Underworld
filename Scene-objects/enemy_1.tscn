@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cq4c0h7kb3n0w"]
 
 [ext_resource type="Texture2D" uid="uid://b5y88lvj247kn" path="res://art_assets/enemy1.png" id="1_5dvbc"]
-[ext_resource type="Script" path="res://Scripts/enemy_1.gd" id="1_6s1x3"]
+[ext_resource type="Script" uid="uid://bq7g5li6q68fw" path="res://Scripts/enemy_1.gd" id="1_6s1x3"]
 [ext_resource type="PackedScene" uid="uid://bclmkd818y1qj" path="res://Scene-objects/enemy_patrol_code.tscn" id="3_ba826"]
 [ext_resource type="PackedScene" uid="uid://2an1qc4cc7ds" path="res://Scene-objects/enemy_phyisics_code.tscn" id="4_628kr"]
 [ext_resource type="PackedScene" uid="uid://xqat36bavyap" path="res://Scene-objects/enemy_health_script.tscn" id="5_1lw37"]
@@ -61,12 +61,14 @@ target_position = Vector2(0, 8)
 enemy_refrence = NodePath("..")
 
 [node name="enemy_health_script" parent="." node_paths=PackedStringArray("enemy_refrence", "physics_code") instance=ExtResource("5_1lw37")]
-max_health = 100
 x_knockback_1st_attck = 200
-y_knockback_1st_attck = 200
+y_knockback_1st_attck = 70
 dmg_for_1st_attack = 10
 enemy_refrence = NodePath("..")
 physics_code = NodePath("../enemy_phyisics_code")
+
+[node name="dmg_stun_timer" parent="enemy_health_script" index="0"]
+wait_time = 0.565
 
 [editable path="enemy_patrol_code"]
 [editable path="enemy_phyisics_code"]

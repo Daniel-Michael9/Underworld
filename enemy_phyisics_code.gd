@@ -13,5 +13,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	enemy_refrence.velocity.y += gravity * delta
 	enemy_refrence.velocity.x += x_knockback
-	x_knockback -= friction * sign(x_knockback)
+	x_knockback = move_toward(x_knockback, 0, friction * delta)
+	
+	if enemy_refrence.state == "hurt":
+		enemy_refrence.velocity.x = 0 + x_knockback
+	
 	enemy_refrence.move_and_slide()
+	

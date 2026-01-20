@@ -12,14 +12,17 @@ var player_refrence: CharacterBody2D
 var health = max_health
 var previus_state
 var is_invonrable = false
+var in_player_hitbox_atck1 = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_refrence = get_tree().get_first_node_in_group("Player")
-
+	health = max_health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if in_player_hitbox_atck1 and is_invonrable == false:
+		take_dmg()
+	die()
 
 
 func take_dmg():
@@ -32,6 +35,8 @@ func take_dmg():
 		enemy_refrence.state = "hurt"
 		dmg_stun_timer.start()
 		invonrability_timer.start()
+		print(health)
+		
 		
 
 
@@ -43,3 +48,18 @@ func _on_dmg_stun_timer_timeout() -> void:
 
 func _on_invonrability_timer_timeout() -> void:
 	is_invonrable = false
+
+
+func _on_enemy_hurt_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("p_atck_1"):
+		in_player_hitbox_atck1 = true
+
+
+func _on_enemy_hurt_box_area_exited(area: Area2D) -> void:
+	if area.is_in_group("p_atck_1"):
+		in_player_hitbox_atck1 = false
+
+
+func die():
+	if health <= 0:
+		enemy_refrence.queue_free()

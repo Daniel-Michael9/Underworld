@@ -23,6 +23,7 @@ PlayerHealthAndAbilities="*res://Scripts/player_health_and_abilities.gd"
 
 Player=""
 enemies=""
+p_atck_1=""
 
 [input]
 

@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bkonqi5le5awr" path="res://art_assets/charecter/CHARACTER_JUMPFALLLAND-Sheet.png" id="3_1gdpa"]
 [ext_resource type="Texture2D" uid="uid://ca8nla8v21k12" path="res://art_assets/charecter/CHARACTER_RUN-Sheet.png" id="4_8b13u"]
 [ext_resource type="Texture2D" uid="uid://xoes73ix45y5" path="res://art_assets/charecter/CHARACTER_attack_1_fx-Sheet.png" id="6_lvyh1"]
-[ext_resource type="Script" uid="uid://l41jla17imj8" path="res://attack_1_hit_box.gd" id="7_lvyh1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s4hw"]
 atlas = ExtResource("2_hfu64")
@@ -515,6 +514,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gdpa"]
 size = Vector2(13, 35)
 
+[sub_resource type="GDScript" id="GDScript_hfu64"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfu64"]
 radius = 23.520958
 height = 57.2659
@@ -658,10 +659,10 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="attack1_hit_box" type="Area2D" parent="."]
+[node name="attack1_hit_box" type="Area2D" parent="." groups=["p_atck_1"]]
 process_mode = 4
 visible = false
-script = ExtResource("7_lvyh1")
+script = SubResource("GDScript_hfu64")
 
 [node name="shape" type="CollisionShape2D" parent="attack1_hit_box"]
 position = Vector2(-1, 8)
@@ -686,6 +687,4 @@ libraries = {
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="ledge_climb_timer" to="." method="_on_ledge_climb_timer_timeout"]
 [connection signal="timeout" from="combo_timer" to="." method="_on_combo_timer_timeout"]
-[connection signal="body_entered" from="attack1_hit_box" to="attack1_hit_box" method="_on_body_entered"]
-[connection signal="body_exited" from="attack1_hit_box" to="attack1_hit_box" method="_on_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
