@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://b5y88lvj247kn" path="res://art_assets/enemy1.png" id="1_5dvbc"]
 [ext_resource type="Script" uid="uid://bq7g5li6q68fw" path="res://Scripts/enemy_1.gd" id="1_6s1x3"]
-[ext_resource type="PackedScene" uid="uid://bclmkd818y1qj" path="res://Scene-objects/enemy_patrol_code.tscn" id="3_ba826"]
-[ext_resource type="PackedScene" uid="uid://2an1qc4cc7ds" path="res://Scene-objects/enemy_phyisics_code.tscn" id="4_628kr"]
-[ext_resource type="PackedScene" uid="uid://xqat36bavyap" path="res://Scene-objects/enemy_health_script.tscn" id="5_1lw37"]
+[ext_resource type="PackedScene" uid="uid://bclmkd818y1qj" path="res://Scene-objects/enemy_codes/behaviour/enemy_patrol_code.tscn" id="3_ba826"]
+[ext_resource type="PackedScene" uid="uid://2an1qc4cc7ds" path="res://Scene-objects/enemy_codes/necesery/enemy_phyisics_code.tscn" id="4_628kr"]
+[ext_resource type="PackedScene" uid="uid://xqat36bavyap" path="res://Scene-objects/enemy_codes/necesery/enemy_health_script.tscn" id="5_1lw37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s1x3"]
 size = Vector2(9, 7)
@@ -61,6 +61,7 @@ target_position = Vector2(0, 8)
 enemy_refrence = NodePath("..")
 
 [node name="enemy_health_script" parent="." node_paths=PackedStringArray("enemy_refrence", "physics_code") instance=ExtResource("5_1lw37")]
+max_health = 100
 x_knockback_1st_attck = 200
 y_knockback_1st_attck = 70
 dmg_for_1st_attack = 10

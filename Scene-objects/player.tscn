@@ -681,23 +681,23 @@ wait_time = 0.154
 one_shot = true
 
 [node name="ledge_grab_ray_cast_top" type="RayCast2D" parent="."]
-position = Vector2(7, -7)
-target_position = Vector2(40, 0)
+position = Vector2(7, -12)
+target_position = Vector2(43, 0)
 collision_mask = 2
 
 [node name="ledge_grab_ray_cast_bottom" type="RayCast2D" parent="."]
-position = Vector2(6, 13)
-target_position = Vector2(24, 0)
+position = Vector2(7, 18)
+target_position = Vector2(12, 0)
 collision_mask = 2
 
 [node name="ledge_grab_ray_cast_top_left" type="RayCast2D" parent="."]
-position = Vector2(-5, -6)
+position = Vector2(-5, -12)
 target_position = Vector2(-37, 0)
 collision_mask = 2
 
 [node name="ledge_grab_ray_cast_bottom_left" type="RayCast2D" parent="."]
-position = Vector2(-6, 14)
-target_position = Vector2(-22, 0)
+position = Vector2(-6, 18)
+target_position = Vector2(-12, 0)
 collision_mask = 2
 
 [node name="ledge_climb_timer" type="Timer" parent="."]

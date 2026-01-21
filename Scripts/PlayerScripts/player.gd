@@ -12,13 +12,13 @@ extends CharacterBody2D
 
 
 #@onready var sprite = $Sprite2D
-var acceleration = 2000
-var movespeed = 29000.0
-var normal_gravity = 2000.0
-var fall_gravity = 2500
+@export var acceleration = 2000
+@export var movespeed = 29000.0
+@export var normal_gravity = 2000.0
+@export var fall_gravity = 2500
 var gravity = normal_gravity
-var jumpforce = 750.0
-var max_fall_speed = 1000
+@export var jumpforce = 750.0
+@export var max_fall_speed = 1000
 var active_jump_buffer = false
 var  move_direction = 0
 var is_facing_right = 1
@@ -46,19 +46,25 @@ var attack_combo = 1
 
 
 #stuff for the duble jump
-var duble_jump_force = 750.0
+@export var duble_jump_force = 750.0
 var can_duble_jump = true
-var has_unlocked_duble_jump = true
+@export var has_unlocked_duble_jump = true
 
 #used for stuff like knockback and stuff like that
 var bonus_x_speed = 0
 #this will be used for lowering the bonus_x_speed
-var friction = 600
+@export var friction = 600
 
 #stuff for the ledge grab
-var vertical_legde_grab_velocity = 500
-var horizontal_ledge_grab_velocity = 120
+@export var vertical_legde_grab_velocity = 500
+@export var horizontal_ledge_grab_velocity = 120
 var can_ledge_grab = true
+
+
+#stuff for healing
+@export var max_mana = 100
+var mana = 0
+@export var amount_of_mana_used_for_healing = 10
 
 func _process(_delta: float) -> void:
 	if velocity.y > 0:

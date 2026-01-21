@@ -124,15 +124,15 @@ scale = Vector2(7.6286187, 7.1127906)
 [node name="dmg_area_spikes" parent="spikes2" index="1"]
 x_knockback = 200
 
-[node name="enemy1" parent="." index="9" instance=ExtResource("2_n7tin")]
-position = Vector2(1852.0001, 42)
-scale = Vector2(4.44, 3.88)
-
-[node name="building_block6" parent="." index="10" instance=ExtResource("2_avy3n")]
+[node name="building_block6" parent="." index="9" instance=ExtResource("2_avy3n")]
 position = Vector2(1452, -11)
 
-[node name="building_block7" parent="." index="11" instance=ExtResource("2_avy3n")]
+[node name="building_block7" parent="." index="10" instance=ExtResource("2_avy3n")]
 position = Vector2(1998, -9)
+
+[node name="enemy1" parent="." index="11" instance=ExtResource("2_n7tin")]
+position = Vector2(1795, 2)
+scale = Vector2(2.2131627, 2.2074778)
 
 [editable path="spikes"]
 [editable path="spikes2"]

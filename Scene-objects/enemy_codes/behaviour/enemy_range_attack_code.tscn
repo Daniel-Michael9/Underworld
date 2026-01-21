@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpni1r4ixyad4"]
+
+[ext_resource type="Script" uid="uid://csvy8ggovrr6k" path="res://Scripts/enemy_range_attack_code.gd" id="1_8d0wd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8d0wd"]
+size = Vector2(18, 19)
+
+[node name="enemy_range_attack_code" type="Node2D" node_paths=PackedStringArray("detect_area")]
+script = ExtResource("1_8d0wd")
+detect_area = NodePath("detect_area")
+
+[node name="detect_area" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="detect_area"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_8d0wd")
+
+[connection signal="area_entered" from="detect_area" to="." method="_on_detect_area_area_entered"]
+[connection signal="area_exited" from="detect_area" to="." method="_on_detect_area_area_exited"]
