@@ -18,17 +18,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if move_direction == "left":
-		dir = -1
+	if enemy_refrence.state:
+		if move_direction == "left":
+			dir = -1
 	
-	if move_direction == "right":
-		dir = 1
+		if move_direction == "right":
+			dir = 1
 		
-	if left_ray.is_colliding() or !down_left_ray.is_colliding():
-		flip("right")
+		if left_ray.is_colliding() or !down_left_ray.is_colliding():
+			flip("right")
 	
-	if right_ray.is_colliding() or !down_right_ray.is_colliding():
-		flip("left")
+		if right_ray.is_colliding() or !down_right_ray.is_colliding():
+			flip("left")
 
 func _physics_process(delta: float) -> void:
 	if enemy_refrence.state == "patrol":

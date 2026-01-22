@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq4c0h7kb3n0w"]
+[gd_scene load_steps=11 format=3 uid="uid://cq4c0h7kb3n0w"]
 
 [ext_resource type="Texture2D" uid="uid://b5y88lvj247kn" path="res://art_assets/enemy1.png" id="1_5dvbc"]
 [ext_resource type="Script" uid="uid://bq7g5li6q68fw" path="res://Scripts/enemy_1.gd" id="1_6s1x3"]
 [ext_resource type="PackedScene" uid="uid://bclmkd818y1qj" path="res://Scene-objects/enemy_codes/behaviour/enemy_patrol_code.tscn" id="3_ba826"]
 [ext_resource type="PackedScene" uid="uid://2an1qc4cc7ds" path="res://Scene-objects/enemy_codes/necesery/enemy_phyisics_code.tscn" id="4_628kr"]
 [ext_resource type="PackedScene" uid="uid://xqat36bavyap" path="res://Scene-objects/enemy_codes/necesery/enemy_health_script.tscn" id="5_1lw37"]
+[ext_resource type="PackedScene" uid="uid://cpni1r4ixyad4" path="res://Scene-objects/enemy_codes/behaviour/enemy_range_attack_code.tscn" id="6_i1skv"]
+[ext_resource type="PackedScene" uid="uid://c422jqeklog1k" path="res://Scene-objects/projectile_1.tscn" id="7_crdfd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s1x3"]
 size = Vector2(9, 7)
@@ -38,6 +40,7 @@ sprite_frames = SubResource("SpriteFrames_628kr")
 
 [node name="enemy_patrol_code" parent="." node_paths=PackedStringArray("enemy_refrence") instance=ExtResource("3_ba826")]
 enemy_refrence = NodePath("..")
+patrol_speed = 200
 
 [node name="RayCast_left" parent="enemy_patrol_code" index="0"]
 position = Vector2(-5, 0)
@@ -71,6 +74,19 @@ physics_code = NodePath("../enemy_phyisics_code")
 [node name="dmg_stun_timer" parent="enemy_health_script" index="0"]
 wait_time = 0.565
 
+[node name="enemy_range_attack_code" parent="." node_paths=PackedStringArray("enemy_refrence") instance=ExtResource("6_i1skv")]
+projectile = ExtResource("7_crdfd")
+projectile_x_speed = 200
+projectile_y_speed = -2
+enemy_refrence = NodePath("..")
+
+[node name="shape" parent="enemy_range_attack_code/detect_area" index="0"]
+position = Vector2(5.5, -11)
+
+[node name="projectile_spawn" parent="enemy_range_attack_code" index="1"]
+position = Vector2(-5, 0)
+
 [editable path="enemy_patrol_code"]
 [editable path="enemy_phyisics_code"]
 [editable path="enemy_health_script"]
+[editable path="enemy_range_attack_code"]

@@ -18,6 +18,7 @@ func take_dmg(amount, knockback_x, knockback_Y):
 	player_Health -= amount
 	player_refrence.bonus_x_speed = knockback_x
 	player_refrence.velocity.y = -knockback_Y
+	print(player_Health)
 	
 func Change_max_health(new_amount):
 	player_max_health = new_amount

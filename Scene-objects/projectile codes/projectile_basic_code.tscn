@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipufrr6vkm21"]
+
+[ext_resource type="Script" uid="uid://bjy8gu4impons" path="res://Scripts/projectile_basic_code.gd" id="1_1wryw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyxqh"]
+radius = 3.1622777
+
+[node name="projectile_basic_code" type="Node2D"]
+script = ExtResource("1_1wryw")
+
+[node name="projectile_collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_collision"]
+shape = SubResource("CircleShape2D_qyxqh")
+
+[connection signal="body_entered" from="projectile_collision" to="." method="_on_projectile_collision_body_entered"]

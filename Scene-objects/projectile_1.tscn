@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c422jqeklog1k"]
+
+[ext_resource type="Texture2D" uid="uid://yxwotckp77u8" path="res://art_assets/spr_bullet.png" id="1_20sp5"]
+[ext_resource type="PackedScene" uid="uid://ipufrr6vkm21" path="res://Scene-objects/projectile codes/projectile_basic_code.tscn" id="3_u01q5"]
+
+[node name="projectile_1" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_20sp5")
+
+[node name="projectile_basic_code" parent="." node_paths=PackedStringArray("projectile_refrence") instance=ExtResource("3_u01q5")]
+projectile_refrence = NodePath("..")
+
+[editable path="projectile_basic_code"]

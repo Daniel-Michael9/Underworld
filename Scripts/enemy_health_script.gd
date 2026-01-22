@@ -35,7 +35,7 @@ func take_dmg():
 		enemy_refrence.state = "hurt"
 		dmg_stun_timer.start()
 		invonrability_timer.start()
-		print(health)
+
 		
 		
 
