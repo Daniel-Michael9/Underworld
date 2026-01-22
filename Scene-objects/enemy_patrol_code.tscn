@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxr2tm82ikse"]
+
+[ext_resource type="Script" uid="uid://u7hhf71uie7t" path="res://Scripts/enemy_patrol_code.gd" id="1_f1uvc"]
+
+[node name="enemy_patrol_code" type="Node2D" node_paths=PackedStringArray("left_ray", "right_ray", "down_left_ray", "down_right_ray")]
+script = ExtResource("1_f1uvc")
+left_ray = NodePath("RayCast_left")
+right_ray = NodePath("RayCast_right")
+down_left_ray = NodePath("RayCast_left_down")
+down_right_ray = NodePath("RayCast_right_down")
+
+[node name="RayCast_left" type="RayCast2D" parent="."]
+position = Vector2(-7, 0)
+target_position = Vector2(-20, 0)
+collision_mask = 2
+
+[node name="RayCast_right" type="RayCast2D" parent="."]
+position = Vector2(8, 0)
+target_position = Vector2(20, 0)
+collision_mask = 2
+
+[node name="RayCast_right_down" type="RayCast2D" parent="."]
+position = Vector2(18, 0)
+target_position = Vector2(0, 17)
+collision_mask = 2
+
+[node name="RayCast_left_down" type="RayCast2D" parent="."]
+position = Vector2(-18, 0)
+target_position = Vector2(0, 17)
+collision_mask = 2

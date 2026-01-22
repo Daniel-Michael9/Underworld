@@ -1,5 +1,7 @@
 extends Node2D
 
+signal animation_requested(anim_name:String)
+
 @export var max_health = 0
 @export var x_knockback_1st_attck = 0
 @export var y_knockback_1st_attck = 0

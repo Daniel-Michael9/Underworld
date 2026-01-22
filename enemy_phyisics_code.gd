@@ -1,5 +1,7 @@
 extends Node2D
 
+signal animation_requested(anim_name:String)
+
 @export var gravity = 300
 @export var enemy_refrence: CharacterBody2D
 var x_knockback = 0

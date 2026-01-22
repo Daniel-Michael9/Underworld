@@ -1,6 +1,6 @@
 extends Node2D
 
-
+signal animation_requested(anim_name:String)
 
 @export var projectile: PackedScene
 @export var projectile_position: Node2D
@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 	
 
 func shoot():
+	animation_requested.emit("range_attack")
 	var current_scene = get_tree().current_scene
 	var spawned_projectile = projectile.instantiate()
 	current_scene.add_child(spawned_projectile)

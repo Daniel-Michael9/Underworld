@@ -1,5 +1,7 @@
 extends Node2D
 
+signal animation_requested(anim_name:String)
+
 @export var left_ray: RayCast2D
 @export var right_ray: RayCast2D
 @export var down_left_ray: RayCast2D
