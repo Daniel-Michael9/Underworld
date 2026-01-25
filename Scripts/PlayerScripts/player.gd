@@ -66,6 +66,14 @@ var can_ledge_grab = true
 var mana = 0
 @export var amount_of_mana_used_for_healing = 10
 
+#stuff for dash
+@export var dash_force = 1500
+var is_dashing = false
+var can_dash = true
+var dash_on_cooldown = false
+@export var dash_duration_timer: Timer
+@export var dash_cooldown_timer: Timer
+
 func _process(_delta: float) -> void:
 	if velocity.y > 0:
 		gravity = fall_gravity
@@ -107,6 +115,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if Input.is_action_just_pressed("Dash"):
+		Dash()
+	
+	if is_dashing:
+		velocity.y = 0
+		velocity.x = dash_force * is_facing_right
+	
 	if !is_on_floor() and Input.is_action_just_pressed("jump") and can_duble_jump:
 		duble_jump()
 	
@@ -119,12 +134,14 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump"):
 				active_jump_buffer = true
 				jump_buffer_timer.start()
-		if velocity.y <= max_fall_speed:
+		if velocity.y <= max_fall_speed and is_dashing == false:
 			velocity.y += gravity * delta
 			
 	else:
-		if Input.is_action_just_pressed("jump") or active_jump_buffer == true:
+		if Input.is_action_just_pressed("jump") or active_jump_buffer == true and is_dashing == false:
 			velocity.y = -jumpforce
+		can_dash = true
+		
 	bonus_x_speed -= friction * sign(bonus_x_speed)
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0 and can_ledge_grab == true and can_cut_jump == true: 
@@ -132,10 +149,11 @@ func _physics_process(delta: float) -> void:
 			can_cut_jump = false
 	
 	move_direction = Input.get_axis("move_left", "move_right")
-	if move_direction != 0:
-		velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta)
-	else:
-		velocity.x = move_toward(velocity.x ,0 , friction* 4 * delta)
+	if is_dashing == false:
+		if move_direction != 0:
+			velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta)
+		else:
+				velocity.x = move_toward(velocity.x ,0 , friction* 4 * delta)
 	move_and_slide()
 	if move_direction < 0:
 		animation_refrence.flip_h = true
@@ -207,3 +225,21 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 		animation_refrence2.stop(true)
 		attack_1_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
 		attack_2_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
+		
+func Dash():
+	if can_dash and dash_on_cooldown == false:
+		is_dashing = true
+		can_dash = false
+		dash_on_cooldown = true
+		dash_cooldown_timer.start()
+		dash_duration_timer.start()
+	
+
+
+func _on_dash_duration_timeout() -> void:
+	is_dashing = false
+	velocity.x = move_toward( velocity.x, move_direction * movespeed * get_physics_process_delta_time(), 30000 * get_physics_process_delta_time())
+
+
+func _on_dash_cooldown_timeout() -> void:
+	dash_on_cooldown = false

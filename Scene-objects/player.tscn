@@ -659,9 +659,11 @@ _data = {
 &"RESET": SubResource("Animation_lvyh1")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dash_duration_timer", "dash_cooldown_timer")]
 collision_mask = 2
 script = ExtResource("1_og8ir")
+dash_duration_timer = NodePath("dash_duration")
+dash_cooldown_timer = NodePath("dash_cooldown")
 
 [node name="main_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8s4hw")
@@ -730,8 +732,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_6pv28")
 }
 
+[node name="dash_duration" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="dash_cooldown" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
 [connection signal="animation_finished" from="main_animations" to="." method="_on_main_animations_animation_finished"]
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="ledge_climb_timer" to="." method="_on_ledge_climb_timer_timeout"]
 [connection signal="timeout" from="combo_timer" to="." method="_on_combo_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="dash_duration" to="." method="_on_dash_duration_timeout"]
+[connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
