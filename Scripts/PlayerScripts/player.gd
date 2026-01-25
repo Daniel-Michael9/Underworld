@@ -71,10 +71,21 @@ var mana = 0
 var is_dashing = false
 var can_dash = true
 var dash_on_cooldown = false
+@export var has_unlocked_dash = true
 @export var dash_duration_timer: Timer
 @export var dash_cooldown_timer: Timer
 
+func _ready() -> void:
+	pass
+	
+
 func _process(_delta: float) -> void:
+
+	
+	scale.x = is_facing_right
+	
+		
+	print(scale.x)
 	if velocity.y > 0:
 		gravity = fall_gravity
 	else:
@@ -155,12 +166,10 @@ func _physics_process(delta: float) -> void:
 		else:
 				velocity.x = move_toward(velocity.x ,0 , friction* 4 * delta)
 	move_and_slide()
-	if move_direction < 0:
-		animation_refrence.flip_h = true
-		attack_fx.flip_h = true
-	elif move_direction > 0:
-		animation_refrence.flip_h = false
-		attack_fx.flip_h = false
+	
+	
+	
+	
 	
 
 
@@ -227,7 +236,7 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 		attack_2_hit_box.process_mode = Node.PROCESS_MODE_DISABLED
 		
 func Dash():
-	if can_dash and dash_on_cooldown == false:
+	if can_dash and dash_on_cooldown == false and has_unlocked_dash:
 		is_dashing = true
 		can_dash = false
 		dash_on_cooldown = true
