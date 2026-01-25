@@ -34,6 +34,11 @@ text = "Start"
 layout_mode = 2
 text = "Option"
 
+[node name="ExtrasButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Extras
+"
+
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")

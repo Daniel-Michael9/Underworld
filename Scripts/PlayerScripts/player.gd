@@ -80,12 +80,12 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
+	
+	
+	#scale.x = is_facing_right
+	animation_refrence.scale.x = is_facing_right
 
-	
-	scale.x = is_facing_right
-	
-		
-	print(scale.x)
+	#print(scale.x)
 	if velocity.y > 0:
 		gravity = fall_gravity
 	else:
@@ -94,12 +94,11 @@ func _process(_delta: float) -> void:
 	if (ledge_grab_ray_cast_bottom.is_colliding() and !ledge_grab_ray_cast_top.is_colliding() and is_facing_right == 1) or (ledge_grab_ray_cast_bottom_left.is_colliding() and !ledge_grab_ray_cast_top_left.is_colliding() and is_facing_right == -1):
 		ledge_climb()
 		
-	if move_direction == 1:
+	if move_direction == 1 :
 		is_facing_right = 1
-		
-	
 	if move_direction == -1:
 		is_facing_right = -1
+		
 	
 	
 	
@@ -113,6 +112,7 @@ func _process(_delta: float) -> void:
 				animation_refrence.play("run")
 		else:
 			if velocity.y < 0:
+				print(move_direction)
 				if animation_refrence.animation != "jump_up":
 					animation_refrence.play("jump_up")
 			elif !animation_refrence.animation != "jump_down":
@@ -123,6 +123,8 @@ func _process(_delta: float) -> void:
 			attack1()
 		else:
 			attack2()
+			
+	
 
 func _physics_process(delta: float) -> void:
 	
