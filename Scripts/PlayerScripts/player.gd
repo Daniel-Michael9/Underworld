@@ -83,7 +83,7 @@ func _process(_delta: float) -> void:
 	
 	
 	#scale.x = is_facing_right
-	animation_refrence.scale.x = is_facing_right
+	#animation_refrence.scale.x = is_facing_right
 
 	#print(scale.x)
 	if velocity.y > 0:
@@ -96,8 +96,12 @@ func _process(_delta: float) -> void:
 		
 	if move_direction == 1 :
 		is_facing_right = 1
+		rotation_degrees = 0
+		scale.y = is_facing_right
 	if move_direction == -1:
 		is_facing_right = -1
+		rotation_degrees = 180
+		scale.y = is_facing_right
 		
 	
 	
@@ -112,7 +116,6 @@ func _process(_delta: float) -> void:
 				animation_refrence.play("run")
 		else:
 			if velocity.y < 0:
-				print(move_direction)
 				if animation_refrence.animation != "jump_up":
 					animation_refrence.play("jump_up")
 			elif !animation_refrence.animation != "jump_down":
