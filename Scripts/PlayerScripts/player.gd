@@ -75,12 +75,30 @@ var dash_on_cooldown = false
 @export var dash_duration_timer: Timer
 @export var dash_cooldown_timer: Timer
 
+
+#stuff for wall jump
+@onready var wall_detect_ray_cast_top: RayCast2D = $Wall_detect_ray_cast_top
+@onready var wall_detect_ray_cast_bottom: RayCast2D = $Wall_detect_ray_cast_bottom
+@onready var wall_jump_timer: Timer = $wall_jump_timer
+@export var wall_slide_speed = 750
+@export var wall_slide_speed_slowed = 600
+@export var wall_jump_vertical_speed = 600
+@export var wall_jump_horizontal_speed = 500
+var is_wall_sliding = false
+var wall_slide_spd = wall_slide_speed
+var is_wall_jumping = false
+var direction_on_start_of_wall_jump = 1
+
+
 func _ready() -> void:
 	pass
 	
 
 func _process(_delta: float) -> void:
-	
+	if move_direction == 0:
+		wall_slide_spd = wall_slide_speed
+	else:
+		wall_slide_spd = wall_slide_speed_slowed
 	
 	#scale.x = is_facing_right
 	#animation_refrence.scale.x = is_facing_right
@@ -131,6 +149,25 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	if (wall_detect_ray_cast_bottom.is_colliding() or wall_detect_ray_cast_top.is_colliding()) and !is_on_floor():
+		is_wall_sliding = true
+	else:
+		is_wall_sliding = false
+	
+	if is_wall_sliding and velocity.y >= wall_slide_spd:
+		velocity.y = wall_slide_spd
+	
+	if is_wall_sliding and Input.is_action_just_pressed("jump"):
+		wall_jump()
+	
+	if (Input.is_action_just_released("jump") or is_facing_right != -direction_on_start_of_wall_jump) and is_wall_jumping:
+		is_wall_jumping = false
+	
+	if is_wall_jumping:
+		velocity.x = wall_jump_horizontal_speed * direction_on_start_of_wall_jump
+	
+	
+	
 	if Input.is_action_just_pressed("Dash"):
 		Dash()
 	
@@ -138,7 +175,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		velocity.x = dash_force * is_facing_right
 	
-	if !is_on_floor() and Input.is_action_just_pressed("jump") and can_duble_jump:
+	if !is_on_floor() and Input.is_action_just_pressed("jump") and can_duble_jump and !is_wall_sliding:
 		duble_jump()
 	
 	if is_on_floor():
@@ -257,3 +294,15 @@ func _on_dash_duration_timeout() -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	dash_on_cooldown = false
+
+
+func wall_jump():
+	velocity.y = -wall_jump_vertical_speed
+	direction_on_start_of_wall_jump = -is_facing_right
+	can_duble_jump = true
+	is_wall_jumping = true
+	wall_jump_timer.start()
+
+
+func _on_wall_jump_timer_timeout() -> void:
+	is_wall_jumping = false
