@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxebpsra53chg"]
+
+[ext_resource type="Script" uid="uid://bsas6idsc4b06" path="res://Scripts/hook.gd" id="1_cg8sx"]
+[ext_resource type="Texture2D" uid="uid://crcmudmykksjo" path="res://art_assets/hook_straight.png" id="1_eta35"]
+[ext_resource type="Texture2D" uid="uid://cmhpx3ukboqh7" path="res://art_assets/hook_diagonal.png" id="2_kftdb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cg8sx"]
+radius = 6.0
+
+[node name="hook" type="CharacterBody2D"]
+script = ExtResource("1_cg8sx")
+diagonal_sprite = ExtResource("2_kftdb")
+normal_sprite = ExtResource("1_eta35")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cg8sx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eta35")

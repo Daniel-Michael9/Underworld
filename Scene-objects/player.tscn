@@ -1,11 +1,14 @@
-[gd_scene load_steps=81 format=3 uid="uid://j12p3kfw5vre"]
+[gd_scene load_steps=84 format=3 uid="uid://j12p3kfw5vre"]
 
 [ext_resource type="Script" uid="uid://b16h1yu8thta1" path="res://Scripts/PlayerScripts/player.gd" id="1_og8ir"]
+[ext_resource type="PackedScene" uid="uid://bxebpsra53chg" path="res://Scene-objects/hook.tscn" id="2_7de65"]
 [ext_resource type="Texture2D" uid="uid://c50v4tbchlld3" path="res://art_assets/charecter/CHARACTER_attack_1-Sheet.png" id="2_hfu64"]
 [ext_resource type="Texture2D" uid="uid://b4x5r2mmowji8" path="res://art_assets/charecter/CHARACTER_IDLE-Sheet.png" id="2_og8ir"]
 [ext_resource type="Texture2D" uid="uid://bkonqi5le5awr" path="res://art_assets/charecter/CHARACTER_JUMPFALLLAND-Sheet.png" id="3_1gdpa"]
 [ext_resource type="Texture2D" uid="uid://ca8nla8v21k12" path="res://art_assets/charecter/CHARACTER_RUN-Sheet.png" id="4_8b13u"]
 [ext_resource type="Texture2D" uid="uid://xoes73ix45y5" path="res://art_assets/charecter/CHARACTER_attack_1_fx-Sheet.png" id="6_lvyh1"]
+[ext_resource type="Script" uid="uid://spsvdvoidi5n" path="res://Scripts/mouse_check_script.gd" id="7_lvyh1"]
+[ext_resource type="Script" uid="uid://8sy3koiucjss" path="res://Scripts/none_ratate_script.gd" id="9_6pv28"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s4hw"]
 atlas = ExtResource("2_hfu64")
@@ -666,8 +669,9 @@ dash_duration_timer = NodePath("dash_duration")
 dash_cooldown_timer = NodePath("dash_cooldown")
 wall_slide_speed = 200
 wall_slide_speed_slowed = 100
-wall_jump_vertical_speed = 800
+wall_jump_vertical_speed = 720
 wall_jump_horizontal_speed = 210
+hook_projectile = ExtResource("2_7de65")
 
 [node name="main_animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8s4hw")
@@ -760,6 +764,69 @@ collision_mask = 2
 wait_time = 0.2
 one_shot = true
 
+[node name="mouse_check_areas" type="Node" parent="." node_paths=PackedStringArray("player_refrence")]
+script = ExtResource("7_lvyh1")
+player_refrence = NodePath("..")
+
+[node name="top" type="Area2D" parent="."]
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="top"]
+position = Vector2(-5, -16)
+polygon = PackedVector2Array(0, 0, -120, -594, 194, -573, 13, 0)
+
+[node name="up_left" type="Area2D" parent="."]
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="up_left"]
+position = Vector2(-5, -13)
+polygon = PackedVector2Array(-1, 0, -50.282104, -238.55382, -123, -587, -501, -199, 0, 8)
+
+[node name="down_left" type="Area2D" parent="."]
+scale = Vector2(1, -1)
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="down_left"]
+position = Vector2(-5, -13)
+polygon = PackedVector2Array(-1, -5, -159, -575, -513, -155, -1, 5)
+
+[node name="up_right" type="Area2D" parent="."]
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="up_right"]
+position = Vector2(10, -14)
+polygon = PackedVector2Array(-1, 1, 186, -565, 607, -238, -1, 9)
+
+[node name="down_right" type="Area2D" parent="."]
+scale = Vector2(1, -1)
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="down_right"]
+position = Vector2(10, -14)
+polygon = PackedVector2Array(-2, -3, 137, -592, 591, -159, -2, 7)
+
+[node name="left" type="Area2D" parent="."]
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="left"]
+position = Vector2(-4, -1)
+polygon = PackedVector2Array(-1, -1, -508, -205, -520, 159, -1, 8)
+
+[node name="right" type="Area2D" parent="."]
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="right"]
+position = Vector2(8, 0)
+polygon = PackedVector2Array(0, 0, 598, -242, 603, 163, 0, 6)
+
+[node name="bottom" type="Area2D" parent="."]
+rotation = 3.1415927
+script = ExtResource("9_6pv28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bottom"]
+position = Vector2(-8, -18)
+polygon = PackedVector2Array(0, 0, -123, -581, 159, -575, 13, 0)
+
 [connection signal="animation_finished" from="main_animations" to="." method="_on_main_animations_animation_finished"]
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="ledge_climb_timer" to="." method="_on_ledge_climb_timer_timeout"]
@@ -768,3 +835,11 @@ one_shot = true
 [connection signal="timeout" from="dash_duration" to="." method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="wall_jump_timer" to="." method="_on_wall_jump_timer_timeout"]
+[connection signal="mouse_entered" from="top" to="mouse_check_areas" method="_on_top_mouse_entered"]
+[connection signal="mouse_entered" from="up_left" to="mouse_check_areas" method="_on_up_left_mouse_entered"]
+[connection signal="mouse_entered" from="down_left" to="mouse_check_areas" method="_on_down_left_mouse_entered"]
+[connection signal="mouse_entered" from="up_right" to="mouse_check_areas" method="_on_up_right_mouse_entered"]
+[connection signal="mouse_entered" from="down_right" to="mouse_check_areas" method="_on_down_right_mouse_entered"]
+[connection signal="mouse_entered" from="left" to="mouse_check_areas" method="_on_left_mouse_entered"]
+[connection signal="mouse_entered" from="right" to="mouse_check_areas" method="_on_right_mouse_entered"]
+[connection signal="mouse_entered" from="bottom" to="mouse_check_areas" method="_on_bottom_mouse_entered"]

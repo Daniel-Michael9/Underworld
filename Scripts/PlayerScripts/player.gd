@@ -90,11 +90,47 @@ var is_wall_jumping = false
 var direction_on_start_of_wall_jump = 1
 
 
+#stuff for grapple hook
+var mouse_pos = "up"
+@export var hook_speed = 100
+@export var hook_projectile: PackedScene
+@export var has_unlocked_the_hook = true
+var can_shoot_a_hook = true
+var is_aiming_a_hook = false
+
 func _ready() -> void:
 	pass
 	
 
 func _process(_delta: float) -> void:
+	
+	#hook stuff
+	if has_unlocked_the_hook and can_shoot_a_hook and Input.is_action_pressed("hook_start"):
+		is_aiming_a_hook = true
+	else:
+		is_aiming_a_hook = false
+	
+	if has_unlocked_the_hook and can_shoot_a_hook and Input.is_action_just_released("hook_start"):
+		if mouse_pos == "up":
+			shoot_hook(0,-hook_speed,"straight", -90)
+		if mouse_pos == "down":
+			shoot_hook(0,hook_speed,"straight", 90)
+		if mouse_pos == "left":
+			shoot_hook(-hook_speed,0,"straight", 180)
+		if mouse_pos == "right":
+			shoot_hook(hook_speed,0,"straight", 0)
+		if mouse_pos == "up_left":
+			shoot_hook(-hook_speed,-hook_speed,"diagonal", -90)
+		if mouse_pos == "up_right":
+			shoot_hook(hook_speed,-hook_speed,"diagonal", 0)
+		if mouse_pos == "down_left":
+			shoot_hook(-hook_speed,hook_speed,"diagonal", 180)
+		if mouse_pos == "down_right":
+			shoot_hook(hook_speed,hook_speed,"diagonal", 90)
+			
+		
+		
+	
 	if move_direction == 0:
 		wall_slide_spd = wall_slide_speed
 	else:
@@ -151,6 +187,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (wall_detect_ray_cast_bottom.is_colliding() or wall_detect_ray_cast_top.is_colliding()) and !is_on_floor():
 		is_wall_sliding = true
+		can_duble_jump = true
 	else:
 		is_wall_sliding = false
 	
@@ -299,10 +336,22 @@ func _on_dash_cooldown_timeout() -> void:
 func wall_jump():
 	velocity.y = -wall_jump_vertical_speed
 	direction_on_start_of_wall_jump = -is_facing_right
-	can_duble_jump = true
 	is_wall_jumping = true
 	wall_jump_timer.start()
 
 
 func _on_wall_jump_timer_timeout() -> void:
 	is_wall_jumping = false
+
+
+func shoot_hook(x_vel,y_vel, Type, Rotation):
+	var current_scene = get_tree().current_scene
+	var spawned_hook = hook_projectile.instantiate()
+	current_scene.add_child(spawned_hook)
+	spawned_hook.global_position = global_position
+	spawned_hook.velocity.x = x_vel
+	spawned_hook.velocity.y = y_vel
+	#can_shoot_a_hook = false
+	spawned_hook.type = Type
+	spawned_hook.rotation_degrees = Rotation
+	
