@@ -39,53 +39,39 @@ offset_right = 271.0
 offset_bottom = 104.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_constants/separation = 25
 
-[node name="Label" type="Label" parent="optionsContainer/VideoContainer"]
+[node name="windowmode" type="OptionButton" parent="optionsContainer/VideoContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-focus_mode = 2
-text = "Resolution & Window Option Mode"
+selected = 0
+item_count = 3
+popup/item_0/text = "Fullsceen"
+popup/item_0/id = 0
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+popup/item_2/text = "Exclusive Fullscreen"
+popup/item_2/id = 2
 
-[node name="HSlider" type="HSlider" parent="optionsContainer/VideoContainer/Label"]
-layout_mode = 0
-offset_left = 275.0
-offset_top = 5.0
-offset_right = 355.0
-offset_bottom = 21.0
-scrollable = false
-
-[node name="CheckButton" type="CheckButton" parent="optionsContainer/VideoContainer"]
+[node name="Vsync" type="CheckButton" parent="optionsContainer/VideoContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 action_mode = 0
 text = "V-Sync & Frame Rate Limits"
 
-[node name="Label3" type="Label" parent="optionsContainer/VideoContainer"]
+[node name="HSlider" type="HSlider" parent="optionsContainer/VideoContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../Label4")
-focus_mode = 2
-text = "Screen-Shake Toggle"
 
-[node name="Label4" type="Label" parent="optionsContainer/VideoContainer"]
+[node name="screenshake" type="Label" parent="optionsContainer/VideoContainer"]
+layout_mode = 2
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../flash")
+focus_mode = 2
+text = "Screen-Shake Slider"
+
+[node name="flash" type="Label" parent="optionsContainer/VideoContainer"]
 layout_mode = 2
 focus_mode = 2
 text = "Flash/Particle Effect Reduction"
-
-[node name="FoldableContainer" type="FoldableContainer" parent="optionsContainer/VideoContainer"]
-layout_mode = 2
-title = "Resolution"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="optionsContainer/VideoContainer/FoldableContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="optionsContainer/VideoContainer/FoldableContainer/VBoxContainer"]
-layout_mode = 2
-text = "Windowed"
-
-[node name="Label2" type="Label" parent="optionsContainer/VideoContainer/FoldableContainer/VBoxContainer"]
-layout_mode = 2
-text = "Fullscreen"
 
 [node name="AudioContainer" type="VBoxContainer" parent="optionsContainer"]
 offset_left = 32.0
