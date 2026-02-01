@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr24p41ar5o07"]
+[gd_scene load_steps=5 format=3 uid="uid://dr24p41ar5o07"]
 
+[ext_resource type="Script" uid="uid://rmvoguw457ox" path="res://Scripts/game.gd" id="1_h54a1"]
 [ext_resource type="PackedScene" uid="uid://j12p3kfw5vre" path="res://Scene-objects/player.tscn" id="1_q18lp"]
 [ext_resource type="PackedScene" uid="uid://fixw1ulmthwn" path="res://Scene-objects/building_block.tscn" id="2_a37hx"]
+[ext_resource type="PackedScene" uid="uid://bbi218h28jo3x" path="res://Scene-objects/UI/Options.tscn" id="2_c8kmf"]
 
 [node name="game" type="Node2D"]
+script = ExtResource("1_h54a1")
+options = ExtResource("2_c8kmf")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_q18lp")]
 position = Vector2(252, 98)

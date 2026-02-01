@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://75anqiqthseu" path="res://Scripts/UI_Scripts/options.gd" id="1_scl0t"]
 
 [node name="Options" type="Control"]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,35 +14,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_scl0t")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
+[node name="frame" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="frame"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -80.00006
-offset_right = 12.999939
+offset_left = -64.00006
+offset_right = 28.999939
 offset_bottom = 49.384163
 grow_horizontal = 2
 
-[node name="Video" type="Label" parent="HBoxContainer"]
+[node name="Video" type="Label" parent="frame/HBoxContainer"]
 layout_mode = 2
 text = "Video"
 
-[node name="Audio" type="Label" parent="HBoxContainer"]
+[node name="Audio" type="Label" parent="frame/HBoxContainer"]
 layout_mode = 2
 text = "Audio"
 
-[node name="optionsContainer" type="Node2D" parent="."]
-position = Vector2(0, 112)
+[node name="flashheader" type="Label" parent="frame"]
+offset_left = 39.0
+offset_top = 277.0
+offset_right = 275.0
+offset_bottom = 300.0
+text = "Flash/Particle Effect Reduction"
 
-[node name="VideoContainer" type="VBoxContainer" parent="optionsContainer"]
+[node name="Screen-Shake Slider" type="Label" parent="frame"]
+offset_left = 71.0
+offset_top = 223.0
+offset_right = 223.0
+offset_bottom = 246.0
+text = "Screen-Shake Slider"
+
+[node name="optionsContainer" type="Node2D" parent="frame"]
+position = Vector2(16, 112)
+
+[node name="VideoContainer" type="VBoxContainer" parent="frame/optionsContainer"]
 offset_right = 271.0
 offset_bottom = 104.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/separation = 25
+theme_override_constants/separation = 35
 
-[node name="windowmode" type="OptionButton" parent="optionsContainer/VideoContainer"]
+[node name="windowmode" type="OptionButton" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
 selected = 0
 item_count = 3
@@ -52,34 +68,25 @@ popup/item_1/id = 1
 popup/item_2/text = "Exclusive Fullscreen"
 popup/item_2/id = 2
 
-[node name="Vsync" type="CheckButton" parent="optionsContainer/VideoContainer"]
+[node name="Vsync" type="CheckButton" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 action_mode = 0
 text = "V-Sync & Frame Rate Limits"
 
-[node name="HSlider" type="HSlider" parent="optionsContainer/VideoContainer"]
+[node name="screenshakeslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
 
-[node name="screenshake" type="Label" parent="optionsContainer/VideoContainer"]
+[node name="flashslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../flash")
-focus_mode = 2
-text = "Screen-Shake Slider"
 
-[node name="flash" type="Label" parent="optionsContainer/VideoContainer"]
-layout_mode = 2
-focus_mode = 2
-text = "Flash/Particle Effect Reduction"
-
-[node name="AudioContainer" type="VBoxContainer" parent="optionsContainer"]
+[node name="AudioContainer" type="VBoxContainer" parent="frame/optionsContainer"]
 offset_left = 32.0
 offset_top = 48.0
 offset_right = 72.0
 offset_bottom = 88.0
 
-[node name="OptionsExplanation" type="VBoxContainer" parent="optionsContainer"]
+[node name="OptionsExplanation" type="VBoxContainer" parent="frame/optionsContainer"]
 offset_left = 640.0
 offset_top = 48.0
 offset_right = 680.0
