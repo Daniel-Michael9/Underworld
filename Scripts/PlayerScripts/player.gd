@@ -350,8 +350,13 @@ func shoot_hook(x_vel,y_vel, Type, Rotation):
 	var spawned_hook = hook_projectile.instantiate()
 	current_scene.add_child(spawned_hook)
 	spawned_hook.global_position = global_position
-	spawned_hook.velocity.x = x_vel
-	spawned_hook.velocity.y = y_vel
+	var hook_vel = Vector2(x_vel,y_vel)
+	if hook_vel.length() > 0:
+		hook_vel = hook_vel.normalized()
+	spawned_hook.velocity = hook_vel * hook_speed
+	
+	#spawned_hook.velocity.x = x_vel.normalized()
+	#spawned_hook.velocity.y = y_vel.normalized()
 	#can_shoot_a_hook = false
 	spawned_hook.type = Type
 	spawned_hook.rotation_degrees = Rotation
