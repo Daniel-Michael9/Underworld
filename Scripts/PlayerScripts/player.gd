@@ -346,6 +346,7 @@ func _on_wall_jump_timer_timeout() -> void:
 
 func shoot_hook(x_vel,y_vel, Type, Rotation):
 	var current_scene = get_tree().current_scene
+	print(hook_projectile)
 	var spawned_hook = hook_projectile.instantiate()
 	current_scene.add_child(spawned_hook)
 	spawned_hook.global_position = global_position

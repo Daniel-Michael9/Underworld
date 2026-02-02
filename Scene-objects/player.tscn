@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bkonqi5le5awr" path="res://art_assets/charecter/CHARACTER_JUMPFALLLAND-Sheet.png" id="3_1gdpa"]
 [ext_resource type="Texture2D" uid="uid://ca8nla8v21k12" path="res://art_assets/charecter/CHARACTER_RUN-Sheet.png" id="4_8b13u"]
 [ext_resource type="Texture2D" uid="uid://xoes73ix45y5" path="res://art_assets/charecter/CHARACTER_attack_1_fx-Sheet.png" id="6_lvyh1"]
-[ext_resource type="Script" path="res://Scripts/mouse_check_script.gd" id="7_lvyh1"]
-[ext_resource type="Script" path="res://Scripts/none_ratate_script.gd" id="9_6pv28"]
+[ext_resource type="Script" uid="uid://spsvdvoidi5n" path="res://Scripts/mouse_check_script.gd" id="7_lvyh1"]
+[ext_resource type="Script" uid="uid://8sy3koiucjss" path="res://Scripts/none_ratate_script.gd" id="9_6pv28"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s4hw"]
 atlas = ExtResource("2_hfu64")

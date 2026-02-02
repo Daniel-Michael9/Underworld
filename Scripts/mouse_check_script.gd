@@ -18,27 +18,45 @@ func _on_top_mouse_entered() -> void:
 
 
 func _on_up_left_mouse_entered() -> void:
-	player_refrence.mouse_pos = "up_left"
+	if player_refrence.is_facing_right == -1:
+		player_refrence.mouse_pos = "up_right"
+	else:
+		player_refrence.mouse_pos = "up_left"
 
 
 func _on_down_left_mouse_entered() -> void:
-	player_refrence.mouse_pos = "down_left"
+	if player_refrence.is_facing_right == -1:
+		player_refrence.mouse_pos = "down_right"
+	else:
+		player_refrence.mouse_pos = "down_left"
 
 
 func _on_up_right_mouse_entered() -> void:
-	player_refrence.mouse_pos = "up_right"
+	if player_refrence.is_facing_right == -1:
+		player_refrence.mouse_pos = "up_left"
+	else:
+		player_refrence.mouse_pos = "up_right"
 
 
 func _on_down_right_mouse_entered() -> void:
-	player_refrence.mouse_pos = "down_right"
+	if player_refrence.is_facing_right == -1:
+		player_refrence.mouse_pos = "down_left"
+	else:
+		player_refrence.mouse_pos = "down_right"
 
 
 func _on_left_mouse_entered() -> void:
-	player_refrence.mouse_pos = "left"
+	if player_refrence.is_facing_right == -1:
+		player_refrence.mouse_pos = "right"
+	else:
+		player_refrence.mouse_pos = "left"
 
 
 func _on_right_mouse_entered() -> void:
-	player_refrence.mouse_pos = "right"
+	if player_refrence.is_facing_right == -1:
+		player_refrence.mouse_pos = "left"
+	else:
+		player_refrence.mouse_pos = "right"
 
 
 func _on_bottom_mouse_entered() -> void:
