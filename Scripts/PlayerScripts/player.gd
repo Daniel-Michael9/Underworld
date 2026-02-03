@@ -97,6 +97,11 @@ var mouse_pos = "up"
 @export var has_unlocked_the_hook = true
 var can_shoot_a_hook = true
 var is_aiming_a_hook = false
+@export var grapple_force := 2000.0
+@export var max_grapple_speed := 900.0
+@export var stop_distance := 12.0
+var grappling := false
+var grapple_target := Vector2.ZERO
 
 func _ready() -> void:
 	pass
@@ -184,6 +189,8 @@ func _process(_delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if grappling:
+		apply_grapple(delta)
 	
 	if (wall_detect_ray_cast_bottom.is_colliding() or wall_detect_ray_cast_top.is_colliding()) and !is_on_floor():
 		is_wall_sliding = true
@@ -239,7 +246,7 @@ func _physics_process(delta: float) -> void:
 			can_cut_jump = false
 	
 	move_direction = Input.get_axis("move_left", "move_right")
-	if is_dashing == false:
+	if is_dashing == false and grappling == false:
 		if move_direction != 0:
 			velocity.x = move_toward( velocity.x, move_direction * movespeed * delta, acceleration * delta)
 		else:
@@ -354,10 +361,27 @@ func shoot_hook(x_vel,y_vel, Type, Rotation):
 	if hook_vel.length() > 0:
 		hook_vel = hook_vel.normalized()
 	spawned_hook.velocity = hook_vel * hook_speed
-	
-	#spawned_hook.velocity.x = x_vel.normalized()
-	#spawned_hook.velocity.y = y_vel.normalized()
-	#can_shoot_a_hook = false
 	spawned_hook.type = Type
 	spawned_hook.rotation_degrees = Rotation
 	
+
+
+func start_grapple(target: Vector2):
+	grapple_target = target
+	grappling = true
+
+
+func apply_grapple(delta):
+	var to_target = grapple_target - global_position
+	var distance = to_target.length()
+
+	if distance < stop_distance:
+		grappling = false
+		return
+
+	var direction = to_target.normalized()
+
+	velocity = velocity.project(direction)
+
+	velocity += direction * grapple_force * delta
+	velocity = velocity.limit_length(max_grapple_speed)
