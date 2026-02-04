@@ -1,11 +1,10 @@
 extends Control
 
+var current_child_index = 0
+@onready var container = $frame/HBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	$frame/optionsContainer/VideoContainer/windowmode.grab_focus()
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass

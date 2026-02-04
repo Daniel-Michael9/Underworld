@@ -10,9 +10,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_key_pressed(KEY_O) && is_open == false:
+	if Input.is_action_just_pressed("option") && is_open == false:
 		open_option()
-	elif Input.is_key_pressed(KEY_O) && is_open == true:
+	elif Input.is_action_just_pressed("option") && is_open == true:
 		close_option()
 
 func open_option():

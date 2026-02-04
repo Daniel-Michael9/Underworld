@@ -16,6 +16,11 @@ script = ExtResource("1_scl0t")
 
 [node name="frame" type="CanvasLayer" parent="."]
 
+[node name="Panel" type="Panel" parent="frame"]
+offset_top = 53.0
+offset_right = 522.0
+offset_bottom = 720.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="frame"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -24,31 +29,32 @@ offset_left = -64.00006
 offset_right = 28.999939
 offset_bottom = 49.384163
 grow_horizontal = 2
+theme_override_constants/separation = 15
 
-[node name="Video" type="Label" parent="frame/HBoxContainer"]
+[node name="Video" type="Button" parent="frame/HBoxContainer"]
 layout_mode = 2
-text = "Video"
+text = "     Video     "
 
-[node name="Audio" type="Label" parent="frame/HBoxContainer"]
+[node name="Audio" type="Button" parent="frame/HBoxContainer"]
 layout_mode = 2
-text = "Audio"
-
-[node name="flashheader" type="Label" parent="frame"]
-offset_left = 39.0
-offset_top = 277.0
-offset_right = 275.0
-offset_bottom = 300.0
-text = "Flash/Particle Effect Reduction"
-
-[node name="Screen-Shake Slider" type="Label" parent="frame"]
-offset_left = 71.0
-offset_top = 223.0
-offset_right = 223.0
-offset_bottom = 246.0
-text = "Screen-Shake Slider"
+text = "     Audio     "
 
 [node name="optionsContainer" type="Node2D" parent="frame"]
 position = Vector2(16, 112)
+
+[node name="flashheader" type="Label" parent="frame/optionsContainer"]
+offset_left = 23.0
+offset_top = 165.0
+offset_right = 259.0
+offset_bottom = 188.0
+text = "Flash/Particle Effect Reduction"
+
+[node name="Screen-Shake Slider" type="Label" parent="frame/optionsContainer"]
+offset_left = 55.0
+offset_top = 111.0
+offset_right = 207.0
+offset_bottom = 134.0
+text = "Screen-Shake Slider"
 
 [node name="VideoContainer" type="VBoxContainer" parent="frame/optionsContainer"]
 offset_right = 271.0
