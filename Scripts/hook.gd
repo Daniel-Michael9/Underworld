@@ -39,6 +39,5 @@ func trigger_grapple():
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.start_grapple(hit_position)
-		print("hit")
-
+		
 	queue_free()
