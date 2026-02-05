@@ -18,18 +18,31 @@ script = ExtResource("1_scl0t")
 
 [node name="Panel" type="Panel" parent="frame"]
 offset_top = 53.0
-offset_right = 522.0
+offset_right = 1080.0
 offset_bottom = 720.0
+metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="frame"]
+[node name="Label" type="Label" parent="frame"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -64.00006
-offset_right = 28.999939
-offset_bottom = 49.384163
+offset_left = -53.0
+offset_right = 53.0
+offset_bottom = 45.0
 grow_horizontal = 2
-theme_override_constants/separation = 15
+theme_override_font_sizes/font_size = 32
+text = "Option"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="frame"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.00006
+offset_top = 53.0
+offset_right = 95.99994
+offset_bottom = 375.0
+grow_horizontal = 2
+theme_override_constants/separation = 260
 
 [node name="Video" type="Button" parent="frame/HBoxContainer"]
 layout_mode = 2
@@ -40,31 +53,71 @@ layout_mode = 2
 text = "     Audio     "
 
 [node name="optionsContainer" type="Node2D" parent="frame"]
-position = Vector2(16, 112)
+position = Vector2(400, 112)
 
-[node name="flashheader" type="Label" parent="frame/optionsContainer"]
+[node name="videotext" type="Node2D" parent="frame/optionsContainer"]
+
+[node name="flashheader" type="Label" parent="frame/optionsContainer/videotext"]
 offset_left = 23.0
 offset_top = 165.0
 offset_right = 259.0
 offset_bottom = 188.0
 text = "Flash/Particle Effect Reduction"
 
-[node name="Screen-Shake Slider" type="Label" parent="frame/optionsContainer"]
+[node name="Screen-Shake Slider" type="Label" parent="frame/optionsContainer/videotext"]
 offset_left = 55.0
 offset_top = 111.0
 offset_right = 207.0
 offset_bottom = 134.0
 text = "Screen-Shake Slider"
 
+[node name="audiotext" type="Node2D" parent="frame/optionsContainer"]
+
+[node name="musictext" type="Label" parent="frame/optionsContainer/audiotext"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 110.0
+offset_top = 284.0
+offset_right = 156.0
+offset_bottom = 307.0
+grow_horizontal = 2
+text = "Music"
+
+[node name="sfxtext" type="Label" parent="frame/optionsContainer/audiotext"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 114.0
+offset_top = 335.0
+offset_right = 160.0
+offset_bottom = 358.0
+grow_horizontal = 2
+text = "SFX"
+
+[node name="ambiencetext" type="Label" parent="frame/optionsContainer/audiotext"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 76.0
+offset_top = 387.0
+offset_right = 190.0
+offset_bottom = 410.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Ambient Noise"
+
 [node name="VideoContainer" type="VBoxContainer" parent="frame/optionsContainer"]
 offset_right = 271.0
-offset_bottom = 104.0
+offset_bottom = 199.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 35
 
 [node name="windowmode" type="OptionButton" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../AudioContainer/ambientnoise")
 selected = 0
 item_count = 3
 popup/item_0/text = "Fullsceen"
@@ -85,15 +138,21 @@ layout_mode = 2
 
 [node name="flashslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../AudioContainer/music")
 
 [node name="AudioContainer" type="VBoxContainer" parent="frame/optionsContainer"]
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 72.0
-offset_bottom = 88.0
+offset_top = 304.0
+offset_right = 272.0
+offset_bottom = 344.0
+theme_override_constants/separation = 35
 
-[node name="OptionsExplanation" type="VBoxContainer" parent="frame/optionsContainer"]
-offset_left = 640.0
-offset_top = 48.0
-offset_right = 680.0
-offset_bottom = 88.0
+[node name="music" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../VideoContainer/flashslider")
+
+[node name="sfx" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
+layout_mode = 2
+
+[node name="ambientnoise" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../VideoContainer/windowmode")
