@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbi218h28jo3x"]
+[gd_scene load_steps=3 format=3 uid="uid://bbi218h28jo3x"]
 
 [ext_resource type="Script" uid="uid://75anqiqthseu" path="res://Scripts/UI_Scripts/options.gd" id="1_scl0t"]
+[ext_resource type="StyleBox" uid="uid://clsxmoc4qartk" path="res://Scene-objects/UI/slidereffect.tres" id="2_8ejlf"]
 
 [node name="Options" type="Control"]
 z_index = 10
@@ -44,12 +45,14 @@ offset_bottom = 375.0
 grow_horizontal = 2
 theme_override_constants/separation = 260
 
-[node name="Video" type="Button" parent="frame/HBoxContainer"]
+[node name="Video" type="Label" parent="frame/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "     Video     "
 
-[node name="Audio" type="Button" parent="frame/HBoxContainer"]
+[node name="Audio" type="Label" parent="frame/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "     Audio     "
 
 [node name="optionsContainer" type="Node2D" parent="frame"]
@@ -135,10 +138,12 @@ text = "V-Sync & Frame Rate Limits"
 
 [node name="screenshakeslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
+theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
 
 [node name="flashslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../AudioContainer/music")
+theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
 
 [node name="AudioContainer" type="VBoxContainer" parent="frame/optionsContainer"]
 offset_top = 304.0
@@ -149,10 +154,13 @@ theme_override_constants/separation = 35
 [node name="music" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../VideoContainer/flashslider")
+theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
 
 [node name="sfx" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
 layout_mode = 2
+theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
 
 [node name="ambientnoise" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../VideoContainer/windowmode")
+theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
