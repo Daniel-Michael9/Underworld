@@ -836,17 +836,20 @@ polygon = PackedVector2Array(0, 0, -123, -581, 159, -575, 13, 0)
 position = Vector2(-11, -11)
 scale = Vector2(-1, 1)
 player_refrence = NodePath("..")
+oposite_direction = "up_right"
 
 [node name="hook_arrow_diagonal2" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
 position = Vector2(11, -11)
 player_refrence = NodePath("..")
 direction = "up_right"
+oposite_direction = "up_left"
 
 [node name="hook_arrow_diagonal3" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
 position = Vector2(11, 11)
 scale = Vector2(1, -1)
 player_refrence = NodePath("..")
 direction = "down_right"
+oposite_direction = "down_left"
 
 [node name="hook_arrow_diagonal4" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
 position = Vector2(-11, 11)
@@ -858,24 +861,28 @@ direction = "down_left"
 position = Vector2(16, 0)
 player_refrence = NodePath("..")
 direction = "right"
+oposite_direction = "left"
 
 [node name="hook_arrow_straight2" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
 position = Vector2(-16, 0)
 scale = Vector2(-1, 1)
 player_refrence = NodePath("..")
 direction = "left"
+oposite_direction = "right"
 
 [node name="hook_arrow_straight3" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
 position = Vector2(1, -16)
 rotation = -1.5707964
 player_refrence = NodePath("..")
 direction = "up"
+oposite_direction = "up"
 
 [node name="hook_arrow_straight4" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
 position = Vector2(0, 16)
 rotation = 1.5707964
 player_refrence = NodePath("..")
 direction = "down"
+oposite_direction = "down"
 
 [connection signal="animation_finished" from="main_animations" to="." method="_on_main_animations_animation_finished"]
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
