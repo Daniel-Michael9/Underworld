@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cogg5t6jecgeq"]
+[gd_scene load_steps=3 format=3 uid="uid://cogg5t6jecgeq"]
 
 [ext_resource type="Script" uid="uid://bet6rpyrt0msp" path="res://Scripts/UI_Scripts/menu.gd" id="1_ntkgd"]
+[ext_resource type="PackedScene" uid="uid://bbi218h28jo3x" path="res://Scene-objects/UI/Options.tscn" id="2_u0hft"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -10,39 +11,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ntkgd")
+option_menu = ExtResource("2_u0hft")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -79.5
-offset_top = 77.5
+offset_top = 60.0
 offset_right = 79.5
-offset_bottom = 178.5
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 text = "Start"
 
-[node name="OptionButton" type="Button" parent="VBoxContainer"]
+[node name="OptionButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "Option"
 
-[node name="ExtrasButton" type="Button" parent="VBoxContainer"]
+[node name="ExtrasButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "Extras
 "
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
 text = "Quit
 "
 
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
