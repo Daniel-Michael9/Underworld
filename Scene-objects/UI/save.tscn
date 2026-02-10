@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn02dakgx46w8"]
+
+[ext_resource type="Script" uid="uid://c55f47xyids5" path="res://Scene-objects/UI/save.gd" id="1_qyne0"]
+
+[node name="Save" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qyne0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Selectprofile" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -244.5
+offset_top = 32.0
+offset_right = 244.5
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "SELECT PROFILE"
+
+[node name="profile_containers" type="VBoxContainer" parent="CanvasLayer"]
+z_index = 10
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -174.0
+offset_right = 848.0
+offset_bottom = 206.0
+grow_vertical = 2
+theme_override_constants/separation = 56
+metadata/_edit_use_anchors_ = true
+
+[node name="save_state1" type="Button" parent="CanvasLayer/profile_containers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " 1.       NEW GAME"
+alignment = 0
+
+[node name="save_state2" type="Button" parent="CanvasLayer/profile_containers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " 2.       NEW GAME"
+alignment = 0
+
+[node name="save_state3" type="Button" parent="CanvasLayer/profile_containers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " 3.       NEW GAME"
+alignment = 0
+
+[node name="save_state4" type="Button" parent="CanvasLayer/profile_containers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " 4.       NEW GAME"
+alignment = 0

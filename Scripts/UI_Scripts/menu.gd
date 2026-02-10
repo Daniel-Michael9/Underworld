@@ -1,6 +1,7 @@
 extends Control
 
 @export var option_menu: PackedScene
+@export var save_state: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/VBoxContainer/StartButton.grab_focus()
@@ -20,3 +21,8 @@ func _on_option_button_pressed() -> void:
 	op.tree_exited.connect(func(): $CanvasLayer.show())
 	
 	
+func _on_start_button_pressed() -> void:
+	var save = save_state.instantiate()
+	add_child(save)
+	
+	$CanvasLayer.hide()

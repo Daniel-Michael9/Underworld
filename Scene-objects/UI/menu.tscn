@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cogg5t6jecgeq"]
+[gd_scene load_steps=4 format=3 uid="uid://cogg5t6jecgeq"]
 
 [ext_resource type="Script" uid="uid://bet6rpyrt0msp" path="res://Scripts/UI_Scripts/menu.gd" id="1_ntkgd"]
 [ext_resource type="PackedScene" uid="uid://bbi218h28jo3x" path="res://Scene-objects/UI/Options.tscn" id="2_u0hft"]
+[ext_resource type="PackedScene" uid="uid://cn02dakgx46w8" path="res://Scene-objects/UI/save.tscn" id="3_2o2l7"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ntkgd")
 option_menu = ExtResource("2_u0hft")
+save_state = ExtResource("3_2o2l7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -48,5 +50,6 @@ focus_neighbor_bottom = NodePath("../StartButton")
 text = "Quit
 "
 
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
