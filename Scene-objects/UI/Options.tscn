@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://75anqiqthseu" path="res://Scripts/UI_Scripts/options.gd" id="1_scl0t"]
 [ext_resource type="StyleBox" uid="uid://clsxmoc4qartk" path="res://Scene-objects/UI/slidereffect.tres" id="2_8ejlf"]
 
-[node name="Options" type="Control"]
+[node name="Options" type="Control" groups=["UI_Group"]]
 z_index = 10
 layout_mode = 3
 anchors_preset = 15

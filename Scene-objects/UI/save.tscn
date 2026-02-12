@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn02dakgx46w8"]
+[gd_scene load_steps=3 format=3 uid="uid://cn02dakgx46w8"]
 
 [ext_resource type="Script" uid="uid://c55f47xyids5" path="res://Scene-objects/UI/save.gd" id="1_qyne0"]
+[ext_resource type="PackedScene" uid="uid://duh5l5q51t631" path="res://Scene-objects/Scene1.tscn" id="2_mrsx7"]
 
-[node name="Save" type="Control"]
+[node name="Save" type="Control" groups=["UI_Group"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qyne0")
+first_scene = ExtResource("2_mrsx7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -61,3 +63,5 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = " 4.       NEW GAME"
 alignment = 0
+
+[connection signal="pressed" from="CanvasLayer/profile_containers/save_state1" to="." method="_on_save_state_1_pressed"]

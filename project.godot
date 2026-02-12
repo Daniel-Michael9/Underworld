@@ -32,6 +32,7 @@ Player=""
 enemies=""
 p_atck_1=""
 building=""
+UI_Group=""
 
 [input]
 

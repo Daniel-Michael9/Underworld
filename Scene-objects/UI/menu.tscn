@@ -4,11 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://bbi218h28jo3x" path="res://Scene-objects/UI/Options.tscn" id="2_u0hft"]
 [ext_resource type="PackedScene" uid="uid://cn02dakgx46w8" path="res://Scene-objects/UI/save.tscn" id="3_2o2l7"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" groups=["UI_Group"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = 48.0
+offset_right = -32.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ntkgd")

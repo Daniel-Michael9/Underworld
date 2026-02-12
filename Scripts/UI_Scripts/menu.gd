@@ -37,3 +37,4 @@ func _on_start_button_pressed() -> void:
 
 func _on_canvas_layer_visibility_changed() -> void:
 		$CanvasLayer/VBoxContainer/StartButton.grab_focus()
+		
