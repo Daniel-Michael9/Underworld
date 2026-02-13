@@ -109,7 +109,8 @@ var grapple_target := Vector2.ZERO
 
 
 func _ready() -> void:
-	pass
+	PlayerHealthAndAbilities.player_refrence = self
+	
 	
 
 func _process(_delta: float) -> void:
