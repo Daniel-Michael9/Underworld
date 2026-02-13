@@ -110,7 +110,8 @@ var current_hook: Node2D = null
 
 
 func _ready() -> void:
-	pass
+	PlayerHealthAndAbilities.player_refrence = self
+	
 	
 
 func _process(_delta: float) -> void:
