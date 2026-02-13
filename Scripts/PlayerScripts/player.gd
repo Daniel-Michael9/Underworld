@@ -102,6 +102,11 @@ var is_aiming_a_hook = false
 @export var stop_distance := 12.0
 var grappling := false
 var grapple_target := Vector2.ZERO
+@onready var rope: Line2D = $rope
+@onready var rope_ray: RayCast2D = $"rope _ray"
+
+
+
 
 func _ready() -> void:
 	pass
@@ -190,7 +195,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if grappling:
-		apply_grapple(delta)
+		if rope_blocked():
+			stop_grapple()
+		else:
+			apply_grapple(delta)
+			update_rope()
+	else:
+		rope.visible = false
 	
 	if (wall_detect_ray_cast_bottom.is_colliding() or wall_detect_ray_cast_top.is_colliding()) and !is_on_floor():
 		is_wall_sliding = true
@@ -369,6 +380,7 @@ func shoot_hook(x_vel,y_vel, Type, Rotation):
 func start_grapple(target: Vector2):
 	grapple_target = target
 	grappling = true
+	rope.visible = true
 
 
 func apply_grapple(delta):
@@ -385,3 +397,32 @@ func apply_grapple(delta):
 
 	velocity += direction * grapple_force * delta
 	velocity = velocity.limit_length(max_grapple_speed)
+
+func rope_blocked() -> bool:
+	var to_target = grapple_target - global_position
+
+	rope_ray.target_position = to_target
+	rope_ray.force_raycast_update()
+
+	if rope_ray.is_colliding():
+		var collider = rope_ray.get_collider()
+
+		# If it hits something BEFORE reaching the hook point
+		if rope_ray.get_collision_point().distance_to(global_position) < to_target.length() - 2:
+			return true
+
+	return false
+
+
+func stop_grapple():
+	grappling = false
+	rope.visible = false
+
+
+func update_rope():
+	rope.clear_points()
+
+	var local_target = to_local(grapple_target)
+
+	rope.add_point(Vector2.ZERO)
+	rope.add_point(local_target)
