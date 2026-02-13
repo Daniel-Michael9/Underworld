@@ -4,13 +4,13 @@ var type = "diagonal"
 @export var diagonal_sprite: Resource
 @export var normal_sprite: Resource
 var direction := Vector2.ZERO
-
+var player_refrence: CharacterBody2D
 
 var has_hit := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	player_refrence = get_tree().get_first_node_in_group("Player")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,6 +38,6 @@ func trigger_grapple():
 
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
-		player.start_grapple(hit_position)
+		player.start_grapple(global_position)
 		
 	queue_free()
