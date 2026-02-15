@@ -196,20 +196,12 @@ func _process(_delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	if current_hook:
-		if is_instance_valid(current_hook):
-			update_rope(current_hook.global_position)
-		else:
-			rope.visible = false
-			current_hook = null
-
-	# Grapple pulling
 	if grappling:
 		if rope_blocked():
-			stop_grapple()
+			grappling = false
 		else:
 			apply_grapple(delta)
-			update_rope(grapple_target)
+	update_rope_visual()
 	
 	if (wall_detect_ray_cast_bottom.is_colliding() or wall_detect_ray_cast_top.is_colliding()) and !is_on_floor():
 		is_wall_sliding = true
@@ -423,11 +415,10 @@ func rope_blocked() -> bool:
 
 func stop_grapple():
 	grappling = false
-	rope.visible = false
 	current_hook = null
 
 
-func update_rope(target: Vector2):
+func draw_rope_to(target: Vector2):
 	rope.clear_points()
 	rope.add_point(Vector2.ZERO)
 	rope.add_point(to_local(target))
@@ -443,3 +434,22 @@ func update_rope_to_point(target: Vector2):
 	rope.clear_points()
 	rope.add_point(Vector2.ZERO)
 	rope.add_point(to_local(target))
+
+
+func update_rope_visual():
+
+	# Case 1: Following projectile
+	if current_hook and is_instance_valid(current_hook):
+		rope.visible = true
+		draw_rope_to(current_hook.global_position)
+		return
+
+	# Case 2: Grappling to fixed point
+	if grappling:
+		rope.visible = true
+		draw_rope_to(grapple_target)
+		return
+
+	# Case 3: Nothing active
+	rope.visible = false
+	rope.clear_points()
