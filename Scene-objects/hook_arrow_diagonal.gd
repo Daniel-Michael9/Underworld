@@ -17,5 +17,6 @@ func _process(delta: float) -> void:
 		sprite_refrence.texture = arrow_sprite
 	else:
 		sprite_refrence.texture = empty_sprite
+	look_at(get_global_mouse_position())
 	
 		

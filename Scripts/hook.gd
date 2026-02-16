@@ -1,27 +1,28 @@
 extends CharacterBody2D
-var type = "diagonal"
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@export var diagonal_sprite: Resource
-@export var normal_sprite: Resource
+
+
+@export var speed := 800
 var direction := Vector2.ZERO
+
 var player_refrence: CharacterBody2D
 
 var has_hit := false
 var lifetime := 0.0
 @export var max_lifetime := 1.2 
+var start_mouse_pos = get_global_mouse_position()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_refrence = get_tree().get_first_node_in_group("Player")
+	start_mouse_pos = get_global_mouse_position()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if type == "diagonal":
-		sprite_2d.texture = diagonal_sprite
-	else:
-		sprite_2d.texture = normal_sprite
+	look_at(start_mouse_pos)
 
 func  _physics_process(delta: float) -> void:
+	position += direction * speed * delta
 	lifetime += delta
 	if lifetime >= max_lifetime:
 		expire()

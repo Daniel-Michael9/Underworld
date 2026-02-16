@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://j12p3kfw5vre"]
+[gd_scene load_steps=84 format=3 uid="uid://j12p3kfw5vre"]
 
 [ext_resource type="Script" uid="uid://b16h1yu8thta1" path="res://Scripts/PlayerScripts/player.gd" id="1_og8ir"]
 [ext_resource type="PackedScene" uid="uid://bxebpsra53chg" path="res://Scene-objects/hook.tscn" id="2_7de65"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ca8nla8v21k12" path="res://art_assets/charecter/CHARACTER_RUN-Sheet.png" id="4_8b13u"]
 [ext_resource type="Texture2D" uid="uid://xoes73ix45y5" path="res://art_assets/charecter/CHARACTER_attack_1_fx-Sheet.png" id="6_lvyh1"]
 [ext_resource type="Script" uid="uid://spsvdvoidi5n" path="res://Scripts/mouse_check_script.gd" id="7_lvyh1"]
-[ext_resource type="Script" uid="uid://8sy3koiucjss" path="res://Scripts/none_ratate_script.gd" id="9_6pv28"]
-[ext_resource type="PackedScene" uid="uid://cbhl2dam4h7wv" path="res://Scene-objects/hook_arrow_diagonal.tscn" id="10_yojxo"]
 [ext_resource type="PackedScene" uid="uid://br1fvproodv37" path="res://Scene-objects/hook_arrow_straight.tscn" id="11_plreg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8s4hw"]
@@ -516,9 +514,6 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gdpa"]
-size = Vector2(13, 35)
-
 [sub_resource type="GDScript" id="GDScript_hfu64"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfu64"]
@@ -532,7 +527,7 @@ step = 0.083333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("main_animations:animation")
+tracks/0/path = NodePath("stuff_to_flip/main_animations:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -544,7 +539,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("main_animations:frame")
+tracks/1/path = NodePath("stuff_to_flip/main_animations:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -556,7 +551,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack1_hit_box/shape:disabled")
+tracks/2/path = NodePath("stuff_to_flip/attack1_hit_box/shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -572,7 +567,7 @@ step = 0.083333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("main_animations:animation")
+tracks/0/path = NodePath("stuff_to_flip/main_animations:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -584,7 +579,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("main_animations:frame")
+tracks/1/path = NodePath("stuff_to_flip/main_animations:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -596,7 +591,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack2_hit_box/shape:disabled")
+tracks/2/path = NodePath("stuff_to_flip/attack2_hit_box/shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -611,7 +606,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("main_animations:animation")
+tracks/0/path = NodePath("stuff_to_flip/main_animations:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -623,7 +618,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("main_animations:frame")
+tracks/1/path = NodePath("stuff_to_flip/main_animations:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -635,7 +630,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("attack1_hit_box/shape:disabled")
+tracks/2/path = NodePath("stuff_to_flip/attack1_hit_box/shape:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -647,7 +642,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("attack2_hit_box/shape:disabled")
+tracks/3/path = NodePath("stuff_to_flip/attack2_hit_box/shape:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -664,6 +659,9 @@ _data = {
 &"RESET": SubResource("Animation_lvyh1")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gdpa"]
+size = Vector2(13, 35)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dash_duration_timer", "dash_cooldown_timer") groups=["Player"]]
 collision_mask = 2
 script = ExtResource("1_og8ir")
@@ -679,44 +677,76 @@ grapple_force = 5000.0
 max_grapple_speed = 4000.0
 stop_distance = 20.0
 
-[node name="main_animations" type="AnimatedSprite2D" parent="."]
+[node name="stuff_to_flip" type="Node2D" parent="."]
+
+[node name="main_animations" type="AnimatedSprite2D" parent="stuff_to_flip"]
 sprite_frames = SubResource("SpriteFrames_8s4hw")
 animation = &"attack1"
 autoplay = "idle"
 
-[node name="attack_fx" type="AnimatedSprite2D" parent="."]
+[node name="attack_fx" type="AnimatedSprite2D" parent="stuff_to_flip"]
 sprite_frames = SubResource("SpriteFrames_pv62l")
 animation = &"attack2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_1gdpa")
-
-[node name="jump_buffer_timer" type="Timer" parent="."]
-wait_time = 0.154
-one_shot = true
-
-[node name="ledge_grab_ray_cast_top" type="RayCast2D" parent="."]
+[node name="ledge_grab_ray_cast_top" type="RayCast2D" parent="stuff_to_flip"]
 position = Vector2(7, -12)
 target_position = Vector2(25, 0)
 collision_mask = 2
 
-[node name="ledge_grab_ray_cast_bottom" type="RayCast2D" parent="."]
+[node name="ledge_grab_ray_cast_bottom" type="RayCast2D" parent="stuff_to_flip"]
 position = Vector2(7, 18)
 target_position = Vector2(12, 0)
 collision_mask = 2
 
-[node name="ledge_grab_ray_cast_top_left" type="RayCast2D" parent="."]
+[node name="ledge_grab_ray_cast_top_left" type="RayCast2D" parent="stuff_to_flip"]
 position = Vector2(-5, -12)
 enabled = false
 target_position = Vector2(-28, 0)
 collision_mask = 2
 
-[node name="ledge_grab_ray_cast_bottom_left" type="RayCast2D" parent="."]
+[node name="ledge_grab_ray_cast_bottom_left" type="RayCast2D" parent="stuff_to_flip"]
 position = Vector2(-6, 18)
 enabled = false
 target_position = Vector2(-12, 0)
 collision_mask = 2
+
+[node name="attack1_hit_box" type="Area2D" parent="stuff_to_flip" groups=["p_atck_1"]]
+process_mode = 4
+visible = false
+script = SubResource("GDScript_hfu64")
+
+[node name="shape" type="CollisionShape2D" parent="stuff_to_flip/attack1_hit_box"]
+position = Vector2(-1, 8)
+rotation = -4.712389
+shape = SubResource("CapsuleShape2D_hfu64")
+
+[node name="attack2_hit_box" type="Area2D" parent="stuff_to_flip"]
+process_mode = 4
+
+[node name="shape" type="CollisionShape2D" parent="stuff_to_flip/attack2_hit_box"]
+position = Vector2(-5, 4)
+rotation = -3.6145768
+shape = SubResource("CapsuleShape2D_hfu64")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="stuff_to_flip"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_6pv28")
+}
+
+[node name="Wall_detect_ray_cast_top" type="RayCast2D" parent="stuff_to_flip"]
+position = Vector2(5, -8)
+target_position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="Wall_detect_ray_cast_bottom" type="RayCast2D" parent="stuff_to_flip"]
+position = Vector2(5, 12)
+target_position = Vector2(16, 0)
+collision_mask = 2
+
+[node name="jump_buffer_timer" type="Timer" parent="."]
+wait_time = 0.154
+one_shot = true
 
 [node name="ledge_climb_timer" type="Timer" parent="."]
 one_shot = true
@@ -724,29 +754,6 @@ one_shot = true
 [node name="combo_timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
-
-[node name="attack1_hit_box" type="Area2D" parent="." groups=["p_atck_1"]]
-process_mode = 4
-visible = false
-script = SubResource("GDScript_hfu64")
-
-[node name="shape" type="CollisionShape2D" parent="attack1_hit_box"]
-position = Vector2(-1, 8)
-rotation = -4.712389
-shape = SubResource("CapsuleShape2D_hfu64")
-
-[node name="attack2_hit_box" type="Area2D" parent="."]
-process_mode = 4
-
-[node name="shape" type="CollisionShape2D" parent="attack2_hit_box"]
-position = Vector2(-5, 4)
-rotation = -3.6145768
-shape = SubResource("CapsuleShape2D_hfu64")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6pv28")
-}
 
 [node name="dash_duration" type="Timer" parent="."]
 wait_time = 0.1
@@ -756,134 +763,18 @@ one_shot = true
 wait_time = 0.8
 one_shot = true
 
-[node name="Wall_detect_ray_cast_top" type="RayCast2D" parent="."]
-position = Vector2(5, -8)
-target_position = Vector2(16, 0)
-collision_mask = 2
-
-[node name="Wall_detect_ray_cast_bottom" type="RayCast2D" parent="."]
-position = Vector2(5, 12)
-target_position = Vector2(16, 0)
-collision_mask = 2
-
 [node name="wall_jump_timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[node name="mouse_check_areas" type="Node" parent="." node_paths=PackedStringArray("player_refrence")]
+[node name="mouse_check_areas" type="Node" parent="."]
 script = ExtResource("7_lvyh1")
-player_refrence = NodePath("..")
-
-[node name="top" type="Area2D" parent="."]
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="top"]
-position = Vector2(-5, -16)
-polygon = PackedVector2Array(0, 0, -120, -594, 194, -573, 13, 0)
-
-[node name="up_left" type="Area2D" parent="."]
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="up_left"]
-position = Vector2(-5, -13)
-polygon = PackedVector2Array(-1, 0, -50.282104, -238.55382, -123, -587, -501, -199, 0, 8)
-
-[node name="down_left" type="Area2D" parent="."]
-scale = Vector2(1, -1)
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="down_left"]
-position = Vector2(-5, -13)
-polygon = PackedVector2Array(-1, -5, -159, -575, -513, -155, -1, 5)
-
-[node name="up_right" type="Area2D" parent="."]
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="up_right"]
-position = Vector2(10, -14)
-polygon = PackedVector2Array(-1, 1, 186, -565, 607, -238, 1.8181915, 7.8551254, -1, 9)
-
-[node name="down_right" type="Area2D" parent="."]
-scale = Vector2(1, -1)
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="down_right"]
-position = Vector2(10, -14)
-polygon = PackedVector2Array(-2, -3, 137, -592, 591, -159, -2, 7)
-
-[node name="left" type="Area2D" parent="."]
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="left"]
-position = Vector2(-4, -1)
-polygon = PackedVector2Array(-1, -1, -508, -205, -520, 159, -1, 8)
-
-[node name="right" type="Area2D" parent="."]
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="right"]
-position = Vector2(8, 0)
-polygon = PackedVector2Array(0, 0, 598, -242, 603, 163, 0, 6)
-
-[node name="bottom" type="Area2D" parent="."]
-rotation = 3.1415927
-script = ExtResource("9_6pv28")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bottom"]
-position = Vector2(-8, -18)
-polygon = PackedVector2Array(0, 0, -123, -581, 159, -575, 13, 0)
-
-[node name="hook_arrow_diagonal" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
-position = Vector2(-11, -11)
-scale = Vector2(-1, 1)
-player_refrence = NodePath("..")
-oposite_direction = "up_right"
-
-[node name="hook_arrow_diagonal2" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
-position = Vector2(11, -11)
-player_refrence = NodePath("..")
-direction = "up_right"
-oposite_direction = "up_left"
-
-[node name="hook_arrow_diagonal3" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
-position = Vector2(11, 11)
-scale = Vector2(1, -1)
-player_refrence = NodePath("..")
-direction = "down_right"
-oposite_direction = "down_left"
-
-[node name="hook_arrow_diagonal4" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("10_yojxo")]
-position = Vector2(-11, 11)
-scale = Vector2(-1, -1)
-player_refrence = NodePath("..")
-direction = "down_left"
-
-[node name="hook_arrow_straight" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
-position = Vector2(16, 0)
-player_refrence = NodePath("..")
-direction = "right"
-oposite_direction = "left"
-
-[node name="hook_arrow_straight2" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
-position = Vector2(-16, 0)
-scale = Vector2(-1, 1)
-player_refrence = NodePath("..")
-direction = "left"
-oposite_direction = "right"
 
 [node name="hook_arrow_straight3" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
-position = Vector2(1, -16)
 rotation = -1.5707964
 player_refrence = NodePath("..")
 direction = "up"
 oposite_direction = "up"
-
-[node name="hook_arrow_straight4" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
-position = Vector2(0, 16)
-rotation = 1.5707964
-player_refrence = NodePath("..")
-direction = "down"
-oposite_direction = "down"
 
 [node name="rope _ray" type="RayCast2D" parent="."]
 enabled = false
@@ -893,19 +784,15 @@ collision_mask = 2
 width = 3.0
 default_color = Color(0.2509804, 1, 1, 1)
 
-[connection signal="animation_finished" from="main_animations" to="." method="_on_main_animations_animation_finished"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_1gdpa")
+
+[connection signal="animation_finished" from="stuff_to_flip/main_animations" to="." method="_on_main_animations_animation_finished"]
+[connection signal="animation_finished" from="stuff_to_flip/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="jump_buffer_timer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="timeout" from="ledge_climb_timer" to="." method="_on_ledge_climb_timer_timeout"]
 [connection signal="timeout" from="combo_timer" to="." method="_on_combo_timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="dash_duration" to="." method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="wall_jump_timer" to="." method="_on_wall_jump_timer_timeout"]
-[connection signal="mouse_entered" from="top" to="mouse_check_areas" method="_on_top_mouse_entered"]
-[connection signal="mouse_entered" from="up_left" to="mouse_check_areas" method="_on_up_left_mouse_entered"]
-[connection signal="mouse_entered" from="down_left" to="mouse_check_areas" method="_on_down_left_mouse_entered"]
-[connection signal="mouse_entered" from="up_right" to="mouse_check_areas" method="_on_up_right_mouse_entered"]
-[connection signal="mouse_entered" from="down_right" to="mouse_check_areas" method="_on_down_right_mouse_entered"]
-[connection signal="mouse_entered" from="left" to="mouse_check_areas" method="_on_left_mouse_entered"]
-[connection signal="mouse_entered" from="right" to="mouse_check_areas" method="_on_right_mouse_entered"]
-[connection signal="mouse_entered" from="bottom" to="mouse_check_areas" method="_on_bottom_mouse_entered"]

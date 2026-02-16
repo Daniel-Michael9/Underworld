@@ -25,18 +25,18 @@ var is_facing_right = 1
 var can_cut_jump = true
 
 @onready var jump_buffer_timer: Timer = $jump_buffer_timer
-@onready var ledge_grab_ray_cast_top: RayCast2D = $ledge_grab_ray_cast_top
-@onready var ledge_grab_ray_cast_bottom: RayCast2D = $ledge_grab_ray_cast_bottom
+@onready var ledge_grab_ray_cast_top: RayCast2D = $stuff_to_flip/ledge_grab_ray_cast_top
+@onready var ledge_grab_ray_cast_bottom: RayCast2D = $stuff_to_flip/ledge_grab_ray_cast_bottom
 @onready var ledge_climb_timer: Timer = $ledge_climb_timer
-@onready var ledge_grab_ray_cast_top_left: RayCast2D = $ledge_grab_ray_cast_top_left
-@onready var ledge_grab_ray_cast_bottom_left: RayCast2D = $ledge_grab_ray_cast_bottom_left
-@onready var animation_refrence: AnimatedSprite2D = $main_animations
-@onready var animation_refrence2: AnimationPlayer = $AnimationPlayer
+@onready var ledge_grab_ray_cast_top_left: RayCast2D = $stuff_to_flip/ledge_grab_ray_cast_top_left
+@onready var ledge_grab_ray_cast_bottom_left: RayCast2D = $stuff_to_flip/ledge_grab_ray_cast_bottom_left
+@onready var animation_refrence: AnimatedSprite2D = $stuff_to_flip/main_animations
+@onready var animation_refrence2: AnimationPlayer = $stuff_to_flip/AnimationPlayer
 @onready var main_node: CharacterBody2D = $"."
-@onready var attack_fx: AnimatedSprite2D = $attack_fx
+@onready var attack_fx: AnimatedSprite2D = $stuff_to_flip/attack_fx
 @onready var combo_timer: Timer = $combo_timer
-@onready var attack_1_hit_box: Area2D = $attack1_hit_box
-@onready var attack_2_hit_box: Area2D = $attack2_hit_box
+@onready var attack_1_hit_box: Area2D = $stuff_to_flip/attack1_hit_box
+@onready var attack_2_hit_box: Area2D = $stuff_to_flip/attack2_hit_box
 
 
 
@@ -77,8 +77,8 @@ var dash_on_cooldown = false
 
 
 #stuff for wall jump
-@onready var wall_detect_ray_cast_top: RayCast2D = $Wall_detect_ray_cast_top
-@onready var wall_detect_ray_cast_bottom: RayCast2D = $Wall_detect_ray_cast_bottom
+@onready var wall_detect_ray_cast_top: RayCast2D = $stuff_to_flip/Wall_detect_ray_cast_top
+@onready var wall_detect_ray_cast_bottom: RayCast2D = $stuff_to_flip/Wall_detect_ray_cast_bottom
 @onready var wall_jump_timer: Timer = $wall_jump_timer
 @export var wall_slide_speed = 750
 @export var wall_slide_speed_slowed = 600
@@ -105,6 +105,7 @@ var grapple_target := Vector2.ZERO
 @onready var rope: Line2D = $rope
 @onready var rope_ray: RayCast2D = $"rope _ray"
 var current_hook: Node2D = null
+@onready var stuff_to_flip: Node2D = $stuff_to_flip
 
 
 
@@ -123,22 +124,7 @@ func _process(_delta: float) -> void:
 		is_aiming_a_hook = false
 	
 	if has_unlocked_the_hook and can_shoot_a_hook and Input.is_action_just_released("hook_start"):
-		if mouse_pos == "up":
-			shoot_hook(0,-hook_speed,"straight", -90)
-		if mouse_pos == "down":
-			shoot_hook(0,hook_speed,"straight", 90)
-		if mouse_pos == "left":
-			shoot_hook(-hook_speed,0,"straight", 180)
-		if mouse_pos == "right":
-			shoot_hook(hook_speed,0,"straight", 0)
-		if mouse_pos == "up_left":
-			shoot_hook(-hook_speed,-hook_speed,"diagonal", -90)
-		if mouse_pos == "up_right":
-			shoot_hook(hook_speed,-hook_speed,"diagonal", 0)
-		if mouse_pos == "down_left":
-			shoot_hook(-hook_speed,hook_speed,"diagonal", 180)
-		if mouse_pos == "down_right":
-			shoot_hook(hook_speed,hook_speed,"diagonal", 90)
+		shoot_hook()
 			
 		
 		
@@ -162,12 +148,12 @@ func _process(_delta: float) -> void:
 		
 	if move_direction == 1 :
 		is_facing_right = 1
-		rotation_degrees = 0
-		scale.y = is_facing_right
+		stuff_to_flip.rotation_degrees = 0
+		stuff_to_flip.scale.y = is_facing_right
 	if move_direction == -1:
 		is_facing_right = -1
-		rotation_degrees = 180
-		scale.y = is_facing_right
+		stuff_to_flip.rotation_degrees = 180
+		stuff_to_flip.scale.y = is_facing_right
 		
 	
 	
@@ -362,19 +348,16 @@ func _on_wall_jump_timer_timeout() -> void:
 	is_wall_jumping = false
 
 
-func shoot_hook(x_vel,y_vel, Type, Rotation):
+func shoot_hook():
 	var current_scene = get_tree().current_scene
 	var spawned_hook = hook_projectile.instantiate()
 	current_hook = spawned_hook
 	rope.visible = true
 	current_scene.add_child(spawned_hook)
 	spawned_hook.global_position = global_position
-	var hook_vel = Vector2(x_vel,y_vel)
-	if hook_vel.length() > 0:
-		hook_vel = hook_vel.normalized()
-	spawned_hook.velocity = hook_vel * hook_speed
-	spawned_hook.type = Type
-	spawned_hook.rotation_degrees = Rotation
+	var dir = (get_global_mouse_position() - global_position).normalized()
+	spawned_hook.direction = dir
+	
 	
 
 
