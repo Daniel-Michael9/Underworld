@@ -772,6 +772,7 @@ script = ExtResource("7_lvyh1")
 
 [node name="hook_arrow_straight3" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
 rotation = -1.5707964
+offset = Vector2(0, 0)
 player_refrence = NodePath("..")
 direction = "up"
 oposite_direction = "up"
@@ -785,6 +786,8 @@ width = 3.0
 default_color = Color(0.2509804, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_1gdpa")
 
