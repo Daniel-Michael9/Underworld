@@ -676,6 +676,7 @@ hook_projectile = ExtResource("2_7de65")
 grapple_force = 5000.0
 max_grapple_speed = 4000.0
 stop_distance = 20.0
+slowed_time_amount = 0.23
 
 [node name="stuff_to_flip" type="Node2D" parent="."]
 
@@ -771,8 +772,8 @@ one_shot = true
 script = ExtResource("7_lvyh1")
 
 [node name="hook_arrow_straight3" parent="." node_paths=PackedStringArray("player_refrence") instance=ExtResource("11_plreg")]
+position = Vector2(1, 0)
 rotation = -1.5707964
-offset = Vector2(0, 0)
 player_refrence = NodePath("..")
 direction = "up"
 oposite_direction = "up"

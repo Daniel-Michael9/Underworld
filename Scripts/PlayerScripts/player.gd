@@ -106,7 +106,7 @@ var grapple_target := Vector2.ZERO
 @onready var rope_ray: RayCast2D = $"rope _ray"
 var current_hook: Node2D = null
 @onready var stuff_to_flip: Node2D = $stuff_to_flip
-
+@export var slowed_time_amount = 0.3
 
 
 
@@ -116,7 +116,10 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	
+	if is_aiming_a_hook:
+		Engine.time_scale = slowed_time_amount
+	else:
+		Engine.time_scale = 1
 	#hook stuff
 	if has_unlocked_the_hook and can_shoot_a_hook and Input.is_action_pressed("hook_start"):
 		is_aiming_a_hook = true

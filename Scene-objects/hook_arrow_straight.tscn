@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bbu118wwpmt7c" path="res://art_assets/empty sprite.png" id="3_urgmv"]
 
 [node name="hook_arrow_straight" type="Sprite2D" node_paths=PackedStringArray("sprite_refrence")]
+position = Vector2(0, -1)
 texture = ExtResource("1_qfx60")
 offset = Vector2(16, 0)
 script = ExtResource("1_bqtth")

@@ -6,6 +6,7 @@
 
 [node name="hook_arrow_diagonal" type="Sprite2D" node_paths=PackedStringArray("sprite_refrence")]
 texture = ExtResource("2_li8s5")
+offset = Vector2(10, -10)
 script = ExtResource("1_jf5nl")
 sprite_refrence = NodePath(".")
 empty_sprite = ExtResource("3_li8s5")
