@@ -37,11 +37,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	# Only grapple walls
 	if body.is_in_group("building"):
 		has_hit = true
-		trigger_grapple() 
+		trigger_grapple(body) 
 
-func trigger_grapple():
+func trigger_grapple(body):
 	var hit_position = global_position
-	player_refrence.start_grapple(global_position)
+	player_refrence.start_grapple(global_position, body)
 		
 	queue_free()
 

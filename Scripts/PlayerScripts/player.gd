@@ -185,6 +185,7 @@ func _process(_delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
+
 	if grappling:
 		if rope_blocked():
 			grappling = false
@@ -364,39 +365,63 @@ func shoot_hook():
 	
 
 
-func start_grapple(target: Vector2):
+var grapple_collider: Object = null
+
+func start_grapple(target: Vector2, collider: Object):
 	grapple_target = target
+	grapple_collider = collider
 	grappling = true
 	current_hook = null
 
 
 func apply_grapple(delta):
+
 	var to_target = grapple_target - global_position
 	var distance = to_target.length()
 
+	var direction = to_target.normalized()
+
+	
 	if distance < stop_distance:
 		stop_grapple()
 		return
 
-	var direction = to_target.normalized()
+	
+	if get_slide_collision_count() > 0:
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			if collision.get_normal().dot(direction) < -0.7:
+				stop_grapple()
+				return
 
 	velocity = velocity.project(direction)
 	velocity += direction * grapple_force * delta
 	velocity = velocity.limit_length(max_grapple_speed)
 
 func rope_blocked() -> bool:
-	var to_target = grapple_target - global_position
 
-	rope_ray.target_position = to_target
-	rope_ray.force_raycast_update()
+	if not grappling:
+		return false
 
-	if rope_ray.is_colliding():
-		var hit_point = rope_ray.get_collision_point()
+	var space_state = get_world_2d().direct_space_state
 
-		if hit_point.distance_to(global_position) < to_target.length() - 2:
-			return true
+	var query = PhysicsRayQueryParameters2D.create(
+		global_position,
+		grapple_target
+	)
 
-	return false
+	query.exclude = [self]
+
+	var result = space_state.intersect_ray(query)
+
+	if result.is_empty():
+		return false
+
+	
+	if result.collider == grapple_collider:
+		return false
+
+	return true
 
 
 func stop_grapple():
