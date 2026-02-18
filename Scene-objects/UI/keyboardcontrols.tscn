@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dox1fl4gjnsme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onw5o"]
+bg_color = Color(0.19, 0, 0, 1)
+border_color = Color(0.19303846, 0.1818867, 0.6458451, 1)
+border_blend = true
+
+[node name="keyboardControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_onw5o")

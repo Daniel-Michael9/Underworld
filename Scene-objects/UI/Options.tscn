@@ -23,7 +23,7 @@ offset_right = 1080.0
 offset_bottom = 720.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="frame"]
+[node name="optiontxt" type="Label" parent="frame"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -33,6 +33,16 @@ offset_bottom = 45.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Option"
+
+[node name="Keyboard" type="Button" parent="frame"]
+offset_left = 432.99994
+offset_top = 587.0
+offset_right = 635.99994
+offset_bottom = 618.0
+focus_neighbor_top = NodePath("../optionsContainer/AudioContainer/ambientnoise")
+focus_neighbor_bottom = NodePath("../optionsContainer/VideoContainer/windowmode")
+theme_override_font_sizes/font_size = 16
+text = "Keyboard"
 
 [node name="HBoxContainer" type="VBoxContainer" parent="frame"]
 anchors_preset = 5
@@ -120,7 +130,7 @@ theme_override_constants/separation = 35
 
 [node name="windowmode" type="OptionButton" parent="frame/optionsContainer/VideoContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../AudioContainer/ambientnoise")
+focus_neighbor_top = NodePath("../../../Keyboard")
 selected = 0
 item_count = 3
 popup/item_0/text = "Fullsceen"
@@ -162,5 +172,5 @@ theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
 
 [node name="ambientnoise" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../VideoContainer/windowmode")
+focus_neighbor_bottom = NodePath("../../../Keyboard")
 theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")

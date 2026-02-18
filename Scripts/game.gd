@@ -12,7 +12,7 @@ func _ready() -> void:
 		#ui.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("option") && is_open == false:
 		open_option()
 	elif Input.is_action_just_pressed("option") && is_open == true:
