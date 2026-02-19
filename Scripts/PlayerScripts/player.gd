@@ -107,7 +107,8 @@ var grapple_target := Vector2.ZERO
 var current_hook: Node2D = null
 @onready var stuff_to_flip: Node2D = $stuff_to_flip
 @export var slowed_time_amount = 0.3
-
+@export var fade_in_aim_slow = 0.1
+@export var fade_out_aim_slow = 0.05
 
 
 func _ready() -> void:
@@ -117,9 +118,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if is_aiming_a_hook:
-		Engine.time_scale = slowed_time_amount
+		Engine.time_scale = move_toward(Engine.time_scale, slowed_time_amount, fade_in_aim_slow) 
 	else:
-		Engine.time_scale = 1
+		Engine.time_scale = move_toward(Engine.time_scale, 1, fade_out_aim_slow)
 	#hook stuff
 	if has_unlocked_the_hook and can_shoot_a_hook and Input.is_action_pressed("hook_start"):
 		is_aiming_a_hook = true
