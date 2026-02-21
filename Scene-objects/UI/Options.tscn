@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbi218h28jo3x"]
 
 [ext_resource type="Script" uid="uid://75anqiqthseu" path="res://Scripts/UI_Scripts/options.gd" id="1_scl0t"]
-[ext_resource type="StyleBox" uid="uid://clsxmoc4qartk" path="res://Scene-objects/UI/slidereffect.tres" id="2_8ejlf"]
+[ext_resource type="PackedScene" uid="uid://brb320m7mmvym" path="res://Scene-objects/UI/ops.tscn" id="2_8ejlf"]
 
 [node name="Options" type="Control" groups=["UI_Group"]]
 z_index = 10
@@ -14,6 +14,7 @@ offset_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_scl0t")
+video = ExtResource("2_8ejlf")
 
 [node name="frame" type="CanvasLayer" parent="."]
 
@@ -28,149 +29,65 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -53.0
+offset_top = 160.0
 offset_right = 53.0
-offset_bottom = 45.0
+offset_bottom = 205.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
-text = "Option"
+text = "OPTIONS"
 
-[node name="Keyboard" type="Button" parent="frame"]
-offset_left = 432.99994
-offset_top = 587.0
-offset_right = 635.99994
-offset_bottom = 618.0
-focus_neighbor_top = NodePath("../optionsContainer/AudioContainer/ambientnoise")
-focus_neighbor_bottom = NodePath("../optionsContainer/VideoContainer/windowmode")
+[node name="VBoxContainer" type="VBoxContainer" parent="frame"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -89.0
+offset_right = 69.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 18
+
+[node name="Video" type="Button" parent="frame/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Back")
 theme_override_font_sizes/font_size = 16
-text = "Keyboard"
+text = "VIDEO"
 
-[node name="HBoxContainer" type="VBoxContainer" parent="frame"]
-anchors_preset = 5
+[node name="Audio" type="Button" parent="frame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "AUDIO"
+
+[node name="Keyboard" type="Button" parent="frame/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "KEYBOARD"
+
+[node name="Controller" type="Button" parent="frame/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Back")
+theme_override_font_sizes/font_size = 16
+text = "CONTROLLER"
+
+[node name="Back" type="Button" parent="frame"]
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -107.00006
-offset_top = 53.0
-offset_right = 95.99994
-offset_bottom = 375.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -191.0
+offset_right = 25.0
+offset_bottom = -160.0
 grow_horizontal = 2
-theme_override_constants/separation = 260
+grow_vertical = 0
+focus_neighbor_top = NodePath("../VBoxContainer/Controller")
+focus_neighbor_bottom = NodePath("../VBoxContainer/Video")
+text = "BACK"
 
-[node name="Video" type="Label" parent="frame/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "     Video     "
-
-[node name="Audio" type="Label" parent="frame/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "     Audio     "
-
-[node name="optionsContainer" type="Node2D" parent="frame"]
-position = Vector2(400, 112)
-
-[node name="videotext" type="Node2D" parent="frame/optionsContainer"]
-
-[node name="flashheader" type="Label" parent="frame/optionsContainer/videotext"]
-offset_left = 23.0
-offset_top = 165.0
-offset_right = 259.0
-offset_bottom = 188.0
-text = "Flash/Particle Effect Reduction"
-
-[node name="Screen-Shake Slider" type="Label" parent="frame/optionsContainer/videotext"]
-offset_left = 55.0
-offset_top = 111.0
-offset_right = 207.0
-offset_bottom = 134.0
-text = "Screen-Shake Slider"
-
-[node name="audiotext" type="Node2D" parent="frame/optionsContainer"]
-
-[node name="musictext" type="Label" parent="frame/optionsContainer/audiotext"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 110.0
-offset_top = 284.0
-offset_right = 156.0
-offset_bottom = 307.0
-grow_horizontal = 2
-text = "Music"
-
-[node name="sfxtext" type="Label" parent="frame/optionsContainer/audiotext"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 114.0
-offset_top = 335.0
-offset_right = 160.0
-offset_bottom = 358.0
-grow_horizontal = 2
-text = "SFX"
-
-[node name="ambiencetext" type="Label" parent="frame/optionsContainer/audiotext"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 76.0
-offset_top = 387.0
-offset_right = 190.0
-offset_bottom = 410.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Ambient Noise"
-
-[node name="VideoContainer" type="VBoxContainer" parent="frame/optionsContainer"]
-offset_right = 271.0
-offset_bottom = 199.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/separation = 35
-
-[node name="windowmode" type="OptionButton" parent="frame/optionsContainer/VideoContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../../Keyboard")
-selected = 0
-item_count = 3
-popup/item_0/text = "Fullsceen"
-popup/item_0/id = 0
-popup/item_1/text = "Windowed"
-popup/item_1/id = 1
-popup/item_2/text = "Exclusive Fullscreen"
-popup/item_2/id = 2
-
-[node name="Vsync" type="CheckButton" parent="frame/optionsContainer/VideoContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-action_mode = 0
-text = "V-Sync & Frame Rate Limits"
-
-[node name="screenshakeslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
-layout_mode = 2
-theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
-
-[node name="flashslider" type="HSlider" parent="frame/optionsContainer/VideoContainer"]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../../AudioContainer/music")
-theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
-
-[node name="AudioContainer" type="VBoxContainer" parent="frame/optionsContainer"]
-offset_top = 304.0
-offset_right = 272.0
-offset_bottom = 344.0
-theme_override_constants/separation = 35
-
-[node name="music" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../VideoContainer/flashslider")
-theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
-
-[node name="sfx" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
-layout_mode = 2
-theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
-
-[node name="ambientnoise" type="HSlider" parent="frame/optionsContainer/AudioContainer"]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../../../Keyboard")
-theme_override_styles/grabber_area_highlight = ExtResource("2_8ejlf")
+[connection signal="pressed" from="frame/VBoxContainer/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="frame/Back" to="." method="_on_back_pressed"]

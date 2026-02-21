@@ -17,7 +17,6 @@ func _on_quit_button_pressed() -> void:
 func _on_option_button_pressed() -> void:
 	op = option_menu.instantiate()
 	add_child(op)
-	
 	# Hiding the main menu when entering the option settings
 	$CanvasLayer.hide()
 	

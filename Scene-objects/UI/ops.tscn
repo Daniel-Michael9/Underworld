@@ -13,7 +13,7 @@ script = ExtResource("1_dmt08")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="option" type="Label" parent="CanvasLayer"]
+[node name="Video" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -22,7 +22,7 @@ offset_right = 27.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
-text = "Option"
+text = "VIDEO"
 
 [node name="items" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 48.0
@@ -34,6 +34,7 @@ theme_override_constants/separation = 40
 [node name="ScreenContainer" type="Button" parent="CanvasLayer/items"]
 self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
+focus_neighbor_top = NodePath("../FlashContainer")
 text = "
 
 "
@@ -179,12 +180,13 @@ offset_left = -262.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("..")
+focus_neighbor_top = NodePath("../../v-syncContainer")
+focus_neighbor_bottom = NodePath("../../FlashContainer")
 
 [node name="FlashContainer" type="Button" parent="CanvasLayer/items"]
 self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../ScreenContainer")
 text = " 
 
 "
@@ -211,7 +213,7 @@ offset_left = -262.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-focus_neighbor_top = NodePath("..")
+focus_neighbor_top = NodePath("../../ScreenshakeContainer")
 focus_neighbor_bottom = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/items/ScreenContainer" to="." method="_on_screen_container_pressed"]
