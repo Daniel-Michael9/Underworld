@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://brb320m7mmvym"]
+
+[ext_resource type="Script" uid="uid://dtoub0yvfasfm" path="res://Scene-objects/UI/ops.gd" id="1_dmt08"]
+
+[node name="options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmt08")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="option" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_right = 27.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Option"
+
+[node name="items" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 96.0
+offset_right = 592.0
+offset_bottom = 302.0
+theme_override_constants/separation = 40
+
+[node name="ScreenContainer" type="HBoxContainer" parent="CanvasLayer/items"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 128
+
+[node name="Screenmode" type="Label" parent="CanvasLayer/items/ScreenContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Screen-mode"
+
+[node name="screen" type="OptionButton" parent="CanvasLayer/items/ScreenContainer"]
+layout_mode = 2
+size_flags_horizontal = 11
+theme_override_font_sizes/font_size = 24
+selected = 1
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Exclusive Fullscreen"
+popup/item_2/id = 2
+
+[node name="ResolutionContainer" type="HBoxContainer" parent="CanvasLayer/items"]
+layout_mode = 2
+theme_override_constants/separation = 128
+
+[node name="Resolution" type="Label" parent="CanvasLayer/items/ResolutionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Resolution     "
+
+[node name="resolution" type="OptionButton" parent="CanvasLayer/items/ResolutionContainer"]
+layout_mode = 2
+size_flags_horizontal = 11
+theme_override_font_sizes/font_size = 24
+selected = 1
+item_count = 5
+popup/item_0/text = "3840x2160"
+popup/item_0/id = 0
+popup/item_1/text = "2560x1440"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+popup/item_3/text = "960x540"
+popup/item_3/id = 3
+popup/item_4/text = "640x360"
+popup/item_4/id = 4
+
+[node name="v-syncContainer" type="HBoxContainer" parent="CanvasLayer/items"]
+layout_mode = 2
+theme_override_constants/separation = 205
+
+[node name="v-sync" type="Label" parent="CanvasLayer/items/v-syncContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "V-Sync"
+
+[node name="resolution" type="OptionButton" parent="CanvasLayer/items/v-syncContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+selected = 1
+item_count = 2
+popup/item_0/text = "ON"
+popup/item_0/id = 0
+popup/item_1/text = "OFF"
+popup/item_1/id = 1
