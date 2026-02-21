@@ -31,19 +31,35 @@ offset_right = 592.0
 offset_bottom = 302.0
 theme_override_constants/separation = 40
 
-[node name="ScreenContainer" type="HBoxContainer" parent="CanvasLayer/items"]
+[node name="ScreenContainer" type="Button" parent="CanvasLayer/items"]
+self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
-focus_mode = 2
-theme_override_constants/separation = 128
+text = "
+
+"
 
 [node name="Screenmode" type="Label" parent="CanvasLayer/items/ScreenContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 152.0
+offset_bottom = 17.0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-text = "Screen-mode"
+text = " Screen-mode"
 
 [node name="screen" type="OptionButton" parent="CanvasLayer/items/ScreenContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -261.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 24
 selected = 1
 item_count = 3
@@ -54,18 +70,35 @@ popup/item_1/id = 1
 popup/item_2/text = "Exclusive Fullscreen"
 popup/item_2/id = 2
 
-[node name="ResolutionContainer" type="HBoxContainer" parent="CanvasLayer/items"]
+[node name="ResolutionContainer" type="Button" parent="CanvasLayer/items"]
+self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
-theme_override_constants/separation = 128
+text = "
+
+"
 
 [node name="Resolution" type="Label" parent="CanvasLayer/items/ResolutionContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-text = "Resolution     "
+text = " Resolution     "
 
 [node name="resolution" type="OptionButton" parent="CanvasLayer/items/ResolutionContainer"]
-layout_mode = 2
-size_flags_horizontal = 11
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 24
 selected = 1
 item_count = 5
@@ -73,29 +106,116 @@ popup/item_0/text = "3840x2160"
 popup/item_0/id = 0
 popup/item_1/text = "2560x1440"
 popup/item_1/id = 1
-popup/item_2/text = "1920x1080"
+popup/item_2/text = "1920x1080                  "
 popup/item_2/id = 2
 popup/item_3/text = "960x540"
 popup/item_3/id = 3
 popup/item_4/text = "640x360"
 popup/item_4/id = 4
 
-[node name="v-syncContainer" type="HBoxContainer" parent="CanvasLayer/items"]
+[node name="v-syncContainer" type="Button" parent="CanvasLayer/items"]
+self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
-theme_override_constants/separation = 205
+text = "
+
+"
 
 [node name="v-sync" type="Label" parent="CanvasLayer/items/v-syncContainer"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-text = "V-Sync"
+text = " V-Sync"
 
-[node name="resolution" type="OptionButton" parent="CanvasLayer/items/v-syncContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="sync" type="OptionButton" parent="CanvasLayer/items/v-syncContainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 24
 selected = 1
 item_count = 2
 popup/item_0/text = "ON"
 popup/item_0/id = 0
-popup/item_1/text = "OFF"
+popup/item_1/text = "OFF                               "
 popup/item_1/id = 1
+
+[node name="ScreenshakeContainer" type="Button" parent="CanvasLayer/items"]
+self_modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 2
+text = " 
+
+"
+
+[node name="screenshake" type="Label" parent="CanvasLayer/items/ScreenshakeContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = " ScreenShake"
+
+[node name="screenshakeslider" type="HSlider" parent="CanvasLayer/items/ScreenshakeContainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("..")
+
+[node name="FlashContainer" type="Button" parent="CanvasLayer/items"]
+self_modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 2
+text = " 
+
+"
+
+[node name="flash" type="Label" parent="CanvasLayer/items/FlashContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = " Flash"
+
+[node name="flashslider" type="HSlider" parent="CanvasLayer/items/FlashContainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/items/ScreenContainer" to="." method="_on_screen_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/items/ResolutionContainer" to="." method="_on_resolution_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/items/v-syncContainer" to="." method="_on_vsync_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/items/ScreenshakeContainer" to="." method="_on_screenshake_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/items/FlashContainer" to="." method="_on_flash_container_pressed"]
