@@ -1,0 +1,159 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbkaomudb3a6j"]
+
+[ext_resource type="Script" uid="uid://doavu87hhk85r" path="res://Scripts/UI_Scripts/audio.gd" id="1_0e1k8"]
+
+[node name="Audio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0e1k8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_right = 51.5
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "AUDIO"
+
+[node name="ItemsList" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -219.0
+offset_right = 208.0
+offset_bottom = -165.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="MusicContainer" type="Button" parent="CanvasLayer/ItemsList"]
+self_modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Back")
+text = " 
+
+"
+
+[node name="music" type="Label" parent="CanvasLayer/ItemsList/MusicContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = " MUSIC"
+
+[node name="musicSlider" type="HSlider" parent="CanvasLayer/ItemsList/MusicContainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../../sfxContainer")
+
+[node name="sfxContainer" type="Button" parent="CanvasLayer/ItemsList"]
+self_modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 2
+text = " 
+
+"
+
+[node name="sfx" type="Label" parent="CanvasLayer/ItemsList/sfxContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = " SFX"
+
+[node name="sfxSlider" type="HSlider" parent="CanvasLayer/ItemsList/sfxContainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../../MusicContainer")
+focus_neighbor_bottom = NodePath("../../ambientcontainer")
+
+[node name="ambientcontainer" type="Button" parent="CanvasLayer/ItemsList"]
+self_modulate = Color(1, 1, 1, 0.27058825)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Back")
+text = " 
+
+"
+
+[node name="ambient" type="Label" parent="CanvasLayer/ItemsList/ambientcontainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 544.0
+offset_bottom = 17.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = " AMBIENCE"
+
+[node name="ambientslider" type="HSlider" parent="CanvasLayer/ItemsList/ambientcontainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+focus_neighbor_top = NodePath("../../sfxContainer")
+focus_neighbor_bottom = NodePath("../../../Back")
+
+[node name="Back" type="Button" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -172.0
+offset_right = 88.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../ItemsList/ambientcontainer")
+focus_neighbor_bottom = NodePath("../ItemsList/MusicContainer")
+theme_override_font_sizes/font_size = 26
+text = "BACK"
+
+[connection signal="pressed" from="CanvasLayer/ItemsList/MusicContainer" to="." method="_on_music_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/ItemsList/sfxContainer" to="." method="_on_sfx_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/ItemsList/ambientcontainer" to="." method="_on_ambientcontainer_pressed"]
+[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]

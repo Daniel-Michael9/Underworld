@@ -7,7 +7,7 @@ var save
 var op 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer/VBoxContainer/StartButton.grab_focus()
+	$CanvasLayer/VBoxContainer/StartButton.call_deferred("grab_focus")
 
 
 func _on_quit_button_pressed() -> void:
@@ -33,7 +33,7 @@ func _on_start_button_pressed() -> void:
 	save.tree_exited.connect(func(): $CanvasLayer.show())
 	
 
-
+# Always grabs focus no matter if i'm coming back to it or just spawing it
 func _on_canvas_layer_visibility_changed() -> void:
 		$CanvasLayer/VBoxContainer/StartButton.grab_focus()
 		

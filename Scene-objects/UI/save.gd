@@ -23,3 +23,11 @@ func _on_save_state_1_pressed() -> void:
 	add_child(scene_enter)
 	print("Enter first scene")
 	$CanvasLayer.hide()
+
+
+func _on_canvas_layer_visibility_changed() -> void:
+	$CanvasLayer/profile_containers/save_state1.call_deferred("grab_focus")
+
+
+func _on_back_pressed() -> void:
+	queue_free()

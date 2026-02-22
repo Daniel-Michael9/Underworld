@@ -34,7 +34,7 @@ theme_override_constants/separation = 40
 [node name="ScreenContainer" type="Button" parent="CanvasLayer/items"]
 self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
-focus_neighbor_top = NodePath("../FlashContainer")
+focus_neighbor_top = NodePath("../../Back")
 text = "
 
 "
@@ -186,7 +186,7 @@ focus_neighbor_bottom = NodePath("../../FlashContainer")
 [node name="FlashContainer" type="Button" parent="CanvasLayer/items"]
 self_modulate = Color(1, 1, 1, 0.27058825)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ScreenContainer")
+focus_neighbor_bottom = NodePath("../../Back")
 text = " 
 
 "
@@ -216,8 +216,26 @@ size_flags_horizontal = 8
 focus_neighbor_top = NodePath("../../ScreenshakeContainer")
 focus_neighbor_bottom = NodePath("..")
 
+[node name="Back" type="Button" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.5
+offset_top = -143.0
+offset_right = 62.5
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../items/FlashContainer")
+focus_neighbor_bottom = NodePath("../items/ScreenContainer")
+theme_override_font_sizes/font_size = 28
+text = "BACK"
+
 [connection signal="pressed" from="CanvasLayer/items/ScreenContainer" to="." method="_on_screen_container_pressed"]
 [connection signal="pressed" from="CanvasLayer/items/ResolutionContainer" to="." method="_on_resolution_container_pressed"]
 [connection signal="pressed" from="CanvasLayer/items/v-syncContainer" to="." method="_on_vsync_container_pressed"]
 [connection signal="pressed" from="CanvasLayer/items/ScreenshakeContainer" to="." method="_on_screenshake_container_pressed"]
 [connection signal="pressed" from="CanvasLayer/items/FlashContainer" to="." method="_on_flash_container_pressed"]
+[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_back_pressed"]
