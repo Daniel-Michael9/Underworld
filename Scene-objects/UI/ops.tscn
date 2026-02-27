@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dtoub0yvfasfm" path="res://Scene-objects/UI/ops.gd" id="1_dmt08"]
 
 [node name="options" type="Control"]
+process_mode = 3
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,6 +65,7 @@ grow_vertical = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 24
 selected = 1
+allow_reselect = true
 item_count = 3
 popup/item_0/text = "Windowed"
 popup/item_0/id = 0
@@ -234,7 +237,9 @@ theme_override_font_sizes/font_size = 28
 text = "BACK"
 
 [connection signal="pressed" from="CanvasLayer/items/ScreenContainer" to="." method="_on_screen_container_pressed"]
+[connection signal="item_selected" from="CanvasLayer/items/ScreenContainer/screen" to="." method="_on_screen_item_selected"]
 [connection signal="pressed" from="CanvasLayer/items/ResolutionContainer" to="." method="_on_resolution_container_pressed"]
+[connection signal="item_selected" from="CanvasLayer/items/ResolutionContainer/resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="pressed" from="CanvasLayer/items/v-syncContainer" to="." method="_on_vsync_container_pressed"]
 [connection signal="pressed" from="CanvasLayer/items/ScreenshakeContainer" to="." method="_on_screenshake_container_pressed"]
 [connection signal="pressed" from="CanvasLayer/items/FlashContainer" to="." method="_on_flash_container_pressed"]
