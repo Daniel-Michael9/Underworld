@@ -19,50 +19,49 @@ first_scene = ExtResource("2_mrsx7")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -244.5
-offset_top = 32.0
-offset_right = 244.5
-offset_bottom = 120.0
+offset_left = -122.5
+offset_right = 122.5
+offset_bottom = 48.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 32
 text = "SELECT PROFILE"
 
 [node name="profile_containers" type="VBoxContainer" parent="CanvasLayer"]
 z_index = 10
-anchors_preset = 4
+anchors_preset = -1
 anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 48.0
-offset_top = -174.0
-offset_right = 848.0
-offset_bottom = 206.0
+anchor_right = -0.325
+anchor_bottom = 0.07777778
+offset_top = -126.0
+offset_right = 800.0
+offset_bottom = 254.0
 grow_vertical = 2
-theme_override_constants/separation = 56
+theme_override_constants/separation = 20
 metadata/_edit_use_anchors_ = true
 
 [node name="save_state1" type="Button" parent="CanvasLayer/profile_containers"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../Back")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = " 1.       NEW GAME"
 alignment = 0
 
 [node name="save_state2" type="Button" parent="CanvasLayer/profile_containers"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = " 2.       NEW GAME"
 alignment = 0
 
 [node name="save_state3" type="Button" parent="CanvasLayer/profile_containers"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = " 3.       NEW GAME"
 alignment = 0
 
 [node name="save_state4" type="Button" parent="CanvasLayer/profile_containers"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../../Back")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = " 4.       NEW GAME"
 alignment = 0
 
@@ -72,15 +71,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = -117.0
-offset_right = 96.0
-offset_bottom = -64.0
+offset_left = -56.0
+offset_top = -52.0
+offset_right = 56.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_top = NodePath("../profile_containers/save_state4")
 focus_neighbor_bottom = NodePath("../profile_containers/save_state1")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 20
 text = "BACK"
 
 [connection signal="visibility_changed" from="CanvasLayer" to="." method="_on_canvas_layer_visibility_changed"]
