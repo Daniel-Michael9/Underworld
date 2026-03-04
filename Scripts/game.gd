@@ -13,10 +13,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("option") && is_open == false:
-		open_option()
-	elif Input.is_action_just_pressed("option") && is_open == true:
-		close_option()
+	#if Input.is_action_just_pressed("option") && is_open == false:
+		#open_option()
+	#elif Input.is_action_just_pressed("option") && is_open == true:
+		#close_option()
+	pass
 
 func open_option():
 	op = options.instantiate()

@@ -5,6 +5,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/items/ScreenContainer.call_deferred("grab_focus")
+	get_tree().root.content_scale_size = Vector2i(1920, 1080)
 	
 func _on_screen_container_pressed() -> void:
 	screen.show_popup()
