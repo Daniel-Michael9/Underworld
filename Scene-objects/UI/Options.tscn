@@ -22,11 +22,14 @@ audio = ExtResource("3_nku14")
 
 [node name="Panel" type="Panel" parent="frame"]
 anchors_preset = -1
-anchor_right = -0.6875
-anchor_bottom = -0.8888889
-offset_top = 21.0
-offset_right = 1080.0
-offset_bottom = 688.0
+anchor_left = -0.6875
+anchor_top = -0.86944443
+anchor_right = -1.375
+anchor_bottom = -1.7194444
+offset_left = 440.0
+offset_top = 313.0
+offset_right = 1520.0
+offset_bottom = 980.0
 metadata/_edit_use_anchors_ = true
 
 [node name="optiontxt" type="Label" parent="frame"]
