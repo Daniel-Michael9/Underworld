@@ -49,9 +49,6 @@ func _on_resolution_item_selected(index: int) -> void:
 		0:
 			#get_window().size = Vector2i(1920,1080)
 			get_tree().root.content_scale_size = Vector2i(1920, 1080)
-			
-			var screen_size = DisplayServer.screen_get_size()
-			get_window().position = (screen_size - get_window().size) / 2
 		1:
 			#get_window().size = Vector2i(1280,720)
 			get_tree().root.content_scale_size = Vector2i(1280, 720)

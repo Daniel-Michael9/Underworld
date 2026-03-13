@@ -28,6 +28,14 @@ window/size/mode=3
 window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://Scene-objects/": "blue",
+"res://Scripts/": "green",
+"res://art_assets/": "red"
+}
+
 [global_group]
 
 Player=""

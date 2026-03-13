@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cn02dakgx46w8" path="res://Scene-objects/UI/save.tscn" id="3_2o2l7"]
 
 [node name="Menu" type="Control" groups=["UI_Group"]]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
