@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbi218h28jo3x"]
+[gd_scene load_steps=5 format=3 uid="uid://bbi218h28jo3x"]
 
 [ext_resource type="Script" uid="uid://75anqiqthseu" path="res://Scripts/UI_Scripts/options.gd" id="1_scl0t"]
 [ext_resource type="PackedScene" uid="uid://brb320m7mmvym" path="res://Scene-objects/UI/ops.tscn" id="2_8ejlf"]
 [ext_resource type="PackedScene" uid="uid://bbkaomudb3a6j" path="res://Scene-objects/UI/audio.tscn" id="3_nku14"]
+[ext_resource type="PackedScene" uid="uid://cogg5t6jecgeq" path="res://Scene-objects/UI/menu.tscn" id="4_pleai"]
 
 [node name="Options" type="Control" groups=["UI_Group"]]
 z_index = 10
@@ -17,6 +18,7 @@ grow_vertical = 2
 script = ExtResource("1_scl0t")
 video = ExtResource("2_8ejlf")
 audio = ExtResource("3_nku14")
+main_menu = ExtResource("4_pleai")
 
 [node name="frame" type="CanvasLayer" parent="."]
 
@@ -77,9 +79,14 @@ text = "KEYBOARD"
 
 [node name="Controller" type="Button" parent="frame/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../Back")
 theme_override_font_sizes/font_size = 16
 text = "CONTROLLER"
+
+[node name="mainmenu" type="Button" parent="frame/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Back")
+theme_override_font_sizes/font_size = 16
+text = "	QUIT TO MAIN MENU"
 
 [node name="Back" type="Button" parent="frame"]
 anchors_preset = 7
@@ -88,12 +95,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -25.0
-offset_top = -63.0
+offset_top = -49.0
 offset_right = 25.0
-offset_bottom = -32.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_top = NodePath("../VBoxContainer/Controller")
+focus_neighbor_top = NodePath("../VBoxContainer/mainmenu")
 focus_neighbor_bottom = NodePath("../VBoxContainer/Video")
 text = "BACK"
 
@@ -101,4 +108,5 @@ text = "BACK"
 [connection signal="pressed" from="frame/VBoxContainer/Video" to="." method="_on_video_pressed"]
 [connection signal="tree_exited" from="frame/VBoxContainer/Video" to="." method="_on_video_tree_exited"]
 [connection signal="pressed" from="frame/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="frame/VBoxContainer/mainmenu" to="." method="_on_mainmenu_pressed"]
 [connection signal="pressed" from="frame/Back" to="." method="_on_back_pressed"]

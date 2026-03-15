@@ -8,6 +8,9 @@ var vid
 @export var audio: PackedScene
 var aud
 
+@export var main_menu: PackedScene
+var menu
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$frame/VBoxContainer/Video.call_deferred("grab_focus")
@@ -48,3 +51,9 @@ func _on_audio_pressed() -> void:
 	$frame.hide()
 	
 	aud.tree_exited.connect(func():$frame.show() )
+
+
+func _on_mainmenu_pressed() -> void:
+	menu = main_menu.instantiate()
+	add_child(menu)
+	
