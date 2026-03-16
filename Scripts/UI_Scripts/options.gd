@@ -54,6 +54,9 @@ func _on_audio_pressed() -> void:
 
 
 func _on_mainmenu_pressed() -> void:
-	menu = main_menu.instantiate()
-	add_child(menu)
+	#menu = main_menu.instantiate()
+	#add_child(menu)
+	var men = main_menu.instantiate()
+	add_child(men)
+	
 	

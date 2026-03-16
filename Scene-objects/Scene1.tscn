@@ -139,6 +139,18 @@ scale = Vector2(2.1847458, 2.4150715)
 
 [node name="hook" parent="." index="12" instance=ExtResource("6_o5pyo")]
 
+[node name="building_block8" parent="." index="13" instance=ExtResource("2_avy3n")]
+position = Vector2(-896, -48)
+scale = Vector2(1, 6.5599976)
+
+[node name="building_block9" parent="." index="14" instance=ExtResource("2_avy3n")]
+position = Vector2(-576, -44)
+scale = Vector2(1, 6.5599976)
+
+[node name="building_block10" parent="." index="15" instance=ExtResource("2_avy3n")]
+position = Vector2(224, -496)
+scale = Vector2(13.413323, 0.7200024)
+
 [editable path="spikes"]
 [editable path="spikes2"]
 [editable path="enemy1"]
