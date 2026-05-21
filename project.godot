@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SaveManager="*res://save_manager.gd"
 PlayerHealthAndAbilities="*res://Scripts/player_health_and_abilities.gd"
 controller="*res://Scripts/controller_settings/controller.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"

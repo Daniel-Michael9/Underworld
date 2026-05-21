@@ -5,7 +5,22 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/items/ScreenContainer.call_deferred("grab_focus")
-	get_tree().root.content_scale_size = Vector2i(1920, 1080)
+
+	# 1. Look inside the save file to find the active resolution index
+	var config = ConfigFile.new()
+	var error = config.load("user://settings.cfg")
+	
+	var active_index = 3 # Default backup
+	if error == OK:
+		active_index = config.get_value("video", "chosen_res", 3)
+	
+	# 2. Get the button inside this specific sub-menu VBox
+	var active_button = $CanvasLayer/items/ResolutionContainer/resolution.get_child(active_index)
+	
+	# 3. Highlight it visually
+	#active_button.grab_focus()
+
+	
 	
 func _on_screen_container_pressed() -> void:
 	screen.show_popup()
@@ -45,16 +60,18 @@ func _on_screen_item_selected(index: int) -> void:
 
 
 func _on_resolution_item_selected(index: int) -> void:
+
 	match index:
 		0:
-			#get_window().size = Vector2i(1920,1080)
-			get_tree().root.content_scale_size = Vector2i(1920, 1080)
+			DisplayServer.window_set_size(Vector2i(1920, 1080))
 		1:
-			#get_window().size = Vector2i(1280,720)
-			get_tree().root.content_scale_size = Vector2i(1280, 720)
+			DisplayServer.window_set_size(Vector2i(1280, 720))
 		2:
-			#get_window().size = Vector2i(960,540)
-			get_tree().root.content_scale_size = Vector2i(960, 540)
+			DisplayServer.window_set_size(Vector2i(960, 540))
 		3:
-			#get_window().size = Vector2i(640,360)
-			get_tree().root.content_scale_size = Vector2i(640, 360)
+			DisplayServer.window_set_size(Vector2i(640, 360))
+	print(index)
+	 # SAVING THE FILE SO IT CAN LOAD UP THE EXACT RESOLUTION ON START UP	👌		
+	var config = ConfigFile.new()
+	config.set_value("video", "chosen_res", index)
+	config.save("user://settings.cfg")
