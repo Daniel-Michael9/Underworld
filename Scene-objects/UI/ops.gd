@@ -61,31 +61,37 @@ func _on_screen_item_selected(index: int) -> void:
 
 func _on_resolution_item_selected(index: int) -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	var root_viewport = get_tree().get_root()
+	#var root_viewport = get_tree().get_root()
+	
+	var main_window = get_window()
 	
 	match index:
 		3:
-			# 360p base rendering size
-			root_viewport.size = Vector2i(640, 360)
+			# Stretches the game from a 360p resolution quality
+			main_window.content_scale_factor = 1.0
 		2:
-			# 720p rendering size
-			root_viewport.size = Vector2i(960, 540)
+			# Stretches the game from a 720p resolution quality
+			main_window.content_scale_factor = 2
 		1:
-			# 1080p rendering size
-			root_viewport.size = Vector2i(1280, 720)
+			# Stretches the game from a native 1080p resolution quality
+			main_window.content_scale_factor = 3
 		0:
-			root_viewport.size = Vector2i(1920, 1080)
-			
+			main_window.content_scale_factor = 4
+	
 	#match index:
-		#0:
-			#DisplayServer.window_set_size(Vector2i(1920, 1080))
-		#1:
-			#DisplayServer.window_set_size(Vector2i(1280, 720))
-		#2:
-			#DisplayServer.window_set_size(Vector2i(960, 540))
 		#3:
-			#DisplayServer.window_set_size(Vector2i(640, 360))
-	#print(index)
+			## 360p base rendering size
+			#root_viewport.size = Vector2i(640, 360)
+		#2:
+			## 720p rendering size
+			#root_viewport.size = Vector2i(960, 540)
+		#1:
+			## 1080p rendering size
+			#root_viewport.size = Vector2i(1280, 720)
+		#0:
+			#root_viewport.size = Vector2i(1920, 1080)
+			#
+
 	
 	 # SAVING THE FILE SO IT CAN LOAD UP THE EXACT RESOLUTION ON START UP	👌		
 	var config = ConfigFile.new()
