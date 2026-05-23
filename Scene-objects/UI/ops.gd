@@ -1,24 +1,24 @@
 extends Control
 
-@onready var screen = $CanvasLayer/items/ScreenContainer/screen
+const SAVE_PATH = "user://settings.cfg"
 
+@onready var screen = $CanvasLayer/items/ScreenContainer/screen
+@onready var res_dropdown = $CanvasLayer/items/ResolutionContainer/resolution
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CanvasLayer/items/ScreenContainer.call_deferred("grab_focus")
+	load_saved_resolution()
 
-	# 1. Look inside the save file to find the active resolution index
+func load_saved_resolution() -> void:
 	var config = ConfigFile.new()
-	var error = config.load("user://settings.cfg")
+	var error = config.load(SAVE_PATH)
 	
-	var active_index = 3 # Default backup
+	var active_index = 3 # Default to the top item (640x360) if no save file
 	if error == OK:
 		active_index = config.get_value("video", "chosen_res", 3)
 	
-	# 2. Get the button inside this specific sub-menu VBox
-	var active_button = $CanvasLayer/items/ResolutionContainer/resolution.get_child(active_index)
-	
-	# 3. Highlight it visually
-	#active_button.grab_focus()
+	# This single line forces the dropdown visual to jump to the saved choice!
+	res_dropdown.selected = active_index
 
 	
 	
@@ -60,18 +60,34 @@ func _on_screen_item_selected(index: int) -> void:
 
 
 func _on_resolution_item_selected(index: int) -> void:
-
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	var root_viewport = get_tree().get_root()
+	
 	match index:
-		0:
-			DisplayServer.window_set_size(Vector2i(1920, 1080))
-		1:
-			DisplayServer.window_set_size(Vector2i(1280, 720))
-		2:
-			DisplayServer.window_set_size(Vector2i(960, 540))
 		3:
-			DisplayServer.window_set_size(Vector2i(640, 360))
-	print(index)
+			# 360p base rendering size
+			root_viewport.size = Vector2i(640, 360)
+		2:
+			# 720p rendering size
+			root_viewport.size = Vector2i(960, 540)
+		1:
+			# 1080p rendering size
+			root_viewport.size = Vector2i(1280, 720)
+		0:
+			root_viewport.size = Vector2i(1920, 1080)
+			
+	#match index:
+		#0:
+			#DisplayServer.window_set_size(Vector2i(1920, 1080))
+		#1:
+			#DisplayServer.window_set_size(Vector2i(1280, 720))
+		#2:
+			#DisplayServer.window_set_size(Vector2i(960, 540))
+		#3:
+			#DisplayServer.window_set_size(Vector2i(640, 360))
+	#print(index)
+	
 	 # SAVING THE FILE SO IT CAN LOAD UP THE EXACT RESOLUTION ON START UP	👌		
 	var config = ConfigFile.new()
 	config.set_value("video", "chosen_res", index)
-	config.save("user://settings.cfg")
+	config.save(SAVE_PATH)
