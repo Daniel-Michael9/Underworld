@@ -7,13 +7,15 @@
 [node name="Options" type="Control" groups=["UI_Group"]]
 z_index = 10
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_right = 16.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_scl0t")
 video = ExtResource("2_8ejlf")
 audio = ExtResource("3_nku14")
@@ -21,8 +23,18 @@ audio = ExtResource("3_nku14")
 [node name="frame" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="frame"]
-offset_right = 640.0
-offset_bottom = 359.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -179.5
+offset_right = 320.0
+offset_bottom = 179.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="optiontxt" type="Label" parent="frame"]
 anchors_preset = 5
@@ -42,14 +54,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
+offset_left = -56.0
 offset_top = -89.0
-offset_right = 69.0
+offset_right = 56.0
 offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 18
+metadata/_edit_use_anchors_ = true
 
 [node name="Video" type="Button" parent="frame/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +82,7 @@ text = "KEYBOARD"
 
 [node name="Controller" type="Button" parent="frame/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 focus_neighbor_bottom = NodePath("../../Back")
 theme_override_font_sizes/font_size = 16
 text = "CONTROLLER"

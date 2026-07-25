@@ -3,7 +3,7 @@ extends Node2D
 @export var options: PackedScene 
 var is_open = false
 @onready var op
-\
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -17,6 +17,7 @@ func open_option():
 	op = options.instantiate()
 	add_child(op)
 	is_open = true
+	print("The option settings is open")
 	
 # This function checks if the op instantiator is occupied or not
 # IF NOT THE OPTIONS HAVE SOME ISSUE RUNNING PROPERLY

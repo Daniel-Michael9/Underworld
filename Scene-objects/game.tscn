@@ -9,7 +9,7 @@
 script = ExtResource("1_h54a1")
 options = ExtResource("2_c8kmf")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_q18lp")]
+[node name="Player" parent="." instance=ExtResource("1_q18lp")]
 position = Vector2(252, 98)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
